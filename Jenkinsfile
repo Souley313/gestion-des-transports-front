@@ -14,6 +14,7 @@ pipeline {
         }
         stage( 'deploy') {
             steps {
+                sh 'npm link @angular/cli'
                 sh 'ng deploy --base-href=https://2020-d05-java-devops.github.io/gestion-des-transports-front/'
             }
         }
