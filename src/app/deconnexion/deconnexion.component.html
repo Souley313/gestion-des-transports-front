@@ -1,1 +1,8 @@
-<button  class="btn btn-danger" (click)="seDeconnecter()">Se déconnecter</button>
+<div>  
+    <ng-container *ngIf="collegueConnecte | async as col">
+        <div class="lead" *ngIf="!col.estAnonyme()">
+        <p  >Bonjour: {{col.nom}}</p>
+        </div>
+    </ng-container>
+    <button  class="btn btn-danger" (click)="seDeconnecter()">Se déconnecter</button>
+</div>  
