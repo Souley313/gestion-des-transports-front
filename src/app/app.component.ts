@@ -18,15 +18,6 @@ export class AppComponent {
   }
 
   /**
-   * Action déconnecter collègue.
-   */
-  seDeconnecter() {
-    this.authSrv.seDeconnecter().subscribe(
-      () => this.router.navigate(['/auth'])
-    );
-  }
-
-  /**
    * A l'initialisation, le composant s'abonne au flux du collègue courant connecté.
    *
    * Celui lui permet de rester à jour en fonction des connexions et déconnexions.
