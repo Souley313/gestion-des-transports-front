@@ -1,0 +1,23 @@
+<nav class="navbar navbar-primary bg-light">
+  <!-- Navbar content -->
+
+  <div class="media">  <!-- Logo -->
+    <img src="https://www.dta-ingenierie.fr/voy_content/uploads/2019/03/LogoDTA.svg" width="50px" height="50px"
+      class="mr-3" alt="...">
+    <div class="media-body">
+    </div>
+     <!-- Button Reservations -->
+    <a routerLinkActive="active" class="nav-link" routerLink="/collaborateur/reservations" aria-selected="true" role="tab">Vos
+      réservations</a>
+       <!-- Button Annonces-->
+    <a routerLinkActive="active" class="nav-link" routerLink="/collaborateur/annonces" aria-selected="false">Vos annonces</a>
+     <!-- Button Statistiques -->
+    <a routerLinkActive="active" class="nav-link" routerLink="/collaborateur/statistiques" aria-selected="false">Statistiques</a>
+  </div>
+  <div>
+    <!-- Visu Nom et Prénom Collègue-->
+    Bonjour {{collegueConnexion.nom}} {{collegueConnexion.prenom}}
+    <!-- Button Se Déconnecter -->
+    <p><button type="text" routerLink="" class="btn btn-primary mb-2">Se déconnecter</button></p>
+  </div>
+</nav>
