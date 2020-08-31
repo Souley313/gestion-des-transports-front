@@ -1,4 +1,5 @@
 import { Localisation } from './Localisation';
+import { Reservation } from './Reservation';
 
 enum Statut {
   demandee = 'Demandée',
@@ -6,7 +7,7 @@ enum Statut {
   terminee = 'Terminée'
 }
 
-export class ReservationCovoiturage {
+export class ReservationCovoiturage extends Reservation {
   constructor(
     public dateDepart: Date,
     public depart: Localisation,
@@ -15,5 +16,7 @@ export class ReservationCovoiturage {
     public tempsTrajet: Date,
     public nbPassager: number,
     public statut: Statut
-  ) {}
+  ) {
+    super( dateDepart, depart, destination, distance, tempsTrajet);
+  }
 }
