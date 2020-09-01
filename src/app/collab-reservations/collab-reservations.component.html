@@ -1,0 +1,28 @@
+<h1>Vos réservations</h1>
+<div class="card mb-3">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-primary" [ngClass]="{'active': showCovoiturages}">
+          <input (click)="toggleCovoiturages()" type="checkbox" checked autocomplete="off">Covoiturages
+        </label>
+        <label class="btn btn-primary" [ngClass]="{'active': showVehicules}">
+          <input (click)="toggleVehicules()" type="checkbox" autocomplete="off">Véhicules de service
+        </label>
+        <label class="btn btn-primary" [ngClass]="{'active': showCourses}">
+          <input (click)="toggleCourses()" type="checkbox" autocomplete="off">Courses avec chauffeur
+        </label>
+      </div>
+    </li>
+  </ul>
+  <div class="card-body">
+    <h5 class="card-subtitle mb-2">En cours</h5>
+    <div *ngIf="showCovoiturages">
+      <app-collab-reservations-covoiturage-present></app-collab-reservations-covoiturage-present>
+    </div>
+    <h5 class="card-subtitle mb-2 text-muted mt-3">Historique</h5>
+    <div *ngIf="showCovoiturages">
+      <app-collab-reservations-covoiturage-past></app-collab-reservations-covoiturage-past>
+    </div>
+  </div>
+</div>
