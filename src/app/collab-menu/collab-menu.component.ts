@@ -1,5 +1,7 @@
+import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Collegue } from '../auth/auth.domains';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-collab-menu',
@@ -8,9 +10,15 @@ import { Collegue } from '../auth/auth.domains';
 })
 export class CollabMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authSrv: AuthService, private router: Router) { }
 
-   collegueConnexion = new Collegue( {nom: 'THIAM', prenom: 'Souleymane'}); // Création d'un mock de Collegue pour affichage
+  seDeconnecter() {
+    this.authSrv.seDeconnecter().subscribe(
+      () => this.router.navigate(['/auth'])
+    );
+  }
+
+  collegueConnexion = new Collegue({ nom: 'THIAM', prenom: 'Souleymane' }); // Création d'un mock de Collegue pour affichage
 
   ngOnInit(): void {
   }
