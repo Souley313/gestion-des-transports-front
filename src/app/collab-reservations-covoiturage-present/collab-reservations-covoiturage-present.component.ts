@@ -1,3 +1,5 @@
+import { ReservationCovoiturageAffichage } from './../models/ReservationCovoiturageAffichage';
+import { DataService } from './../services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CollabReservationsCovoituragePresentComponent implements OnInit {
 
-  constructor() { }
+  reservationsCovoiturageAffichage: ReservationCovoiturageAffichage[];
+
+  constructor(protected dataService: DataService) { }
 
   ngOnInit(): void {
+    this.dataService.getAllReservationsCovoiturageAffichageInFuture().subscribe(
+      value => this.reservationsCovoiturageAffichage = value,
+      err => { },
+      () => { }
+    );
   }
 
 }
