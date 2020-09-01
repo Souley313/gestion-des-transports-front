@@ -1,6 +1,8 @@
 <!--
 <div class="jumbotron">
-  <h1 class="display-4">Super Application</h1>
+  <h1 class="display-4">Super Application</h1>  
+</div>
+<main class="container">
   <ng-container *ngIf="collegueConnecte | async as col">
     <div class="lead" *ngIf="!col.estAnonyme()">
       <p  >Utilisateur connecté : {{col.email}}</p>
@@ -12,8 +14,6 @@
 
     </div>
   </ng-container>
-</div>
-<main class="container">
   <router-outlet></router-outlet>
 </main>
 -->

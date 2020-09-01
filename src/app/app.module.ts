@@ -13,14 +13,21 @@ import { StatutConnecteService } from './auth/statut-connecte.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CollabMenuComponent } from './collab-menu/collab-menu.component';
+import { CollabAnnoncesComponent } from './collab-annonces/collab-annonces.component';
+import { CollabReservationsComponent } from './collab-reservations/collab-reservations.component';
+import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
 import { PublierAnnonceComponent } from './publier-annonce/publier-annonce.component';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     TechComponent,
+    CollabMenuComponent,
+    CollabAnnoncesComponent,
+    CollabReservationsComponent,
+    CollabStatistiquesComponent,
     PublierAnnonceComponent
   ],
   imports: [
