@@ -13,12 +13,8 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getAllReservationsCovoiturageAffichageInFuture(): Observable<ReservationCovoiturageAffichage[]> {
-    return this.http.get<ReservationCovoiturageAffichage[]>(this.URL_BACKEND + 'reservations-covoiturage/present');
-  }
-
-  getAllReservationsCovoiturageAffichageInPast(): Observable<ReservationCovoiturageAffichage[]> {
-    return this.http.get<ReservationCovoiturageAffichage[]>(this.URL_BACKEND + 'reservations-covoiturage/past');
+  getAllReservationsCovoiturageAffichage(matricule: string): Observable<ReservationCovoiturageAffichage[]> {
+    return this.http.get<ReservationCovoiturageAffichage[]>(this.URL_BACKEND + 'reservations-covoiturage/' + matricule);
   }
 
 }
