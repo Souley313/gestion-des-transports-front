@@ -17,7 +17,7 @@ import { CollabMenuComponent } from './collab-menu/collab-menu.component';
 import { CollabAnnoncesComponent } from './collab-annonces/collab-annonces.component';
 import { CollabReservationsComponent } from './collab-reservations/collab-reservations.component';
 import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
-import { PublierAnnonceComponent } from './publier-annonce/publier-annonce.component';
+import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-publier-annonce.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { PublierAnnonceComponent } from './publier-annonce/publier-annonce.compo
     CollabAnnoncesComponent,
     CollabReservationsComponent,
     CollabStatistiquesComponent,
-    PublierAnnonceComponent
+    CollabPublierAnnonceComponent
   ],
   imports: [
     BrowserModule,

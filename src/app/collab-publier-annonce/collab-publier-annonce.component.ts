@@ -1,17 +1,16 @@
-import { mockAnnonce } from './../mocks/MockAnnonceCovoiturage';
-import { DataService } from './../services/data.service';
+import { Component, OnInit } from '@angular/core';
 import { AnnonceCovoiturage } from '../models/AnnonceCovoiturage';
-import { Component, OnInit} from '@angular/core';
-import { formatDate } from '@angular/common';
 import { AuthService } from '../auth/auth.service';
-import { CollegueDto } from '../models/CollegueDto';
+import { DataService } from '../services/data.service';
+import { formatDate } from '@angular/common';
+import { mockAnnonce } from '../mocks/MockAnnonceCovoiturage';
 
 @Component({
-  selector: 'app-publier-annonce',
-  templateUrl: './publier-annonce.component.html',
-  styleUrls: ['./publier-annonce.component.scss']
+  selector: 'app-collab-publier-annonce',
+  templateUrl: './collab-publier-annonce.component.html',
+  styleUrls: ['./collab-publier-annonce.component.scss']
 })
-export class PublierAnnonceComponent implements OnInit {
+export class CollabPublierAnnonceComponent implements OnInit {
 
   annonce = new AnnonceCovoiturage();
   today = new Date();
@@ -33,5 +32,4 @@ export class PublierAnnonceComponent implements OnInit {
       )
     );*/
   }
-
 }
