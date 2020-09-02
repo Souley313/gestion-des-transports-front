@@ -1,22 +1,19 @@
 <p class="card-text">Mes covoiturages</p>
 <table class="table table-striped w-auto">
   <thead>
-    <tr>
-      <th>Date / heure début</th>
-      <th>Date / heure fin</th>
-      <th>Immatriculation</th>
-      <th>Marque</th>
-      <th>Modèle</th>
-
-    </tr>
+      <tr>Date / heure début</tr>
+      <tr>Date / heure fin</tr>
+      <tr>Immatriculation</tr>
+      <tr>Marque</tr>
+      <tr>Modèle</tr>
   </thead>
   <tbody>
     <tr *ngFor="let reservation of reservationsVehiculesAffichage">
       <td>{{reservation.dateDepart | date:'dd/MM/yyyy hh:mm'}}</td>
       <td>{{reservation.dateDepart}}</td> <!--TODO : insérer fonction qui calcule date fin-->
-      <td>{{vehicule.immatriculation}}</td>
-      <td>{{vehicule.marque}}</td>
-      <td>{{vehicule.modele}}</td>
+      <td>{{reservation.immatriculation}}</td>
+      <td>{{reservation.marque}}</td>
+      <td>{{reservation.modele}}</td>
     </tr>
   </tbody>
 </table>
