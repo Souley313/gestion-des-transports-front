@@ -14,8 +14,7 @@ import { CollabMenuComponent } from './collab-menu/collab-menu.component';
 import { CollabAnnoncesComponent } from './collab-annonces/collab-annonces.component';
 import { CollabReservationsComponent } from './collab-reservations/collab-reservations.component';
 import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
-import { CollabReservationsCovoituragePresentComponent } from './collab-reservations-covoiturage-present/collab-reservations-covoiturage-present.component';
-import { CollabReservationsCovoituragePastComponent } from './collab-reservations-covoiturage-past/collab-reservations-covoiturage-past.component';
+import { CollabReservationTableComponent } from './collab-reservation-table/collab-reservation-table.component';
 
 
 @NgModule({
@@ -27,8 +26,7 @@ import { CollabReservationsCovoituragePastComponent } from './collab-reservation
     CollabAnnoncesComponent,
     CollabReservationsComponent,
     CollabStatistiquesComponent,
-    CollabReservationsCovoituragePresentComponent,
-    CollabReservationsCovoituragePastComponent
+    CollabReservationTableComponent
   ],
   imports: [
     BrowserModule,
