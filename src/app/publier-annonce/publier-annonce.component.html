@@ -1,3 +1,5 @@
+
+<!-- Formulaire d'annonce -->
 <form #etatForm="ngForm">
   <div class="row">
     <div class="col-12">
@@ -145,7 +147,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-primary">Confirmer</button>
+        <button type="button" class="btn btn-primary" (click)="publier()" data-dismiss="modal">Confirmer</button>
       </div>
     </div>
   </div>

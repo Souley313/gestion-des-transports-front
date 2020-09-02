@@ -3,6 +3,8 @@ import { DataService } from './../services/data.service';
 import { AnnonceCovoiturage } from '../models/AnnonceCovoiturage';
 import { Component, OnInit} from '@angular/core';
 import { formatDate } from '@angular/common';
+import { AuthService } from '../auth/auth.service';
+import { CollegueDto } from '../models/CollegueDto';
 
 @Component({
   selector: 'app-publier-annonce',
@@ -15,18 +17,21 @@ export class PublierAnnonceComponent implements OnInit {
   today = new Date();
   jstoday: string;
 
-  constructor( private dataService: DataService) {
+  constructor( private authSrv: AuthService, private dataService: DataService) {
     this.jstoday = formatDate( this.today, 'yyyy-MM-ddThh:mm', 'fr-FR', '+0200');
-    this.annonce = mockAnnonce;
   }
 
   publier(): void {
-  }
-
-  confirmer(): void {
+    this.dataService.creerAnnonceCovoit( this.annonce);
+    this.ngOnInit();
   }
 
   ngOnInit(): void {
+    this.annonce = mockAnnonce;
+    /*this.authSrv.collegueConnecteObs.subscribe(
+      colllegue => this.annonce.conducteur = collegue.matricule
+      )
+    );*/
   }
 
 }
