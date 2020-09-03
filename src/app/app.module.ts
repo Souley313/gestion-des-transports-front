@@ -18,6 +18,8 @@ import { CollabAnnoncesComponent } from './collab-annonces/collab-annonces.compo
 import { CollabReservationsComponent } from './collab-reservations/collab-reservations.component';
 import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
 import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-publier-annonce.component';
+import { CollabReservationTableComponent } from './collab-reservation-table/collab-reservation-table.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-p
     CollabAnnoncesComponent,
     CollabReservationsComponent,
     CollabStatistiquesComponent,
-    CollabPublierAnnonceComponent
+    CollabPublierAnnonceComponent,
+    CollabReservationTableComponent
   ],
   imports: [
     BrowserModule,

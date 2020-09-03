@@ -28,7 +28,7 @@ export class CollabPublierAnnonceComponent implements OnInit {
   ngOnInit(): void {
     this.annonce = mockAnnonce;
     this.authSrv.collegueConnecteObs.subscribe(
-      collegue => this.annonce.conducteur = collegue.email
+      collegue => this.annonce.conducteur = collegue.matricule
     );
   }
 }
