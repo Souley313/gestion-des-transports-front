@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData( localeFr);
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +17,7 @@ import { CollabMenuComponent } from './collab-menu/collab-menu.component';
 import { CollabAnnoncesComponent } from './collab-annonces/collab-annonces.component';
 import { CollabReservationsComponent } from './collab-reservations/collab-reservations.component';
 import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
+import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-publier-annonce.component';
 import { CollabReservationTableComponent } from './collab-reservation-table/collab-reservation-table.component';
 
 
@@ -26,6 +30,7 @@ import { CollabReservationTableComponent } from './collab-reservation-table/coll
     CollabAnnoncesComponent,
     CollabReservationsComponent,
     CollabStatistiquesComponent,
+    CollabPublierAnnonceComponent,
     CollabReservationTableComponent
   ],
   imports: [
@@ -38,6 +43,9 @@ import { CollabReservationTableComponent } from './collab-reservation-table/coll
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true
+  }, {
+    provide: LOCALE_ID,
+    useValue: 'fr-FR'
   }],
   bootstrap: [AppComponent]
 })
