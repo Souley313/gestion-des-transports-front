@@ -16,20 +16,19 @@ export class CollabPublierAnnonceComponent implements OnInit {
   today = new Date();
   jstoday: string;
 
-  constructor( private authSrv: AuthService, private dataService: DataService) {
+  constructor( private authSrv: AuthService, private dataSrv: DataService) {
     this.jstoday = formatDate( this.today, 'yyyy-MM-ddThh:mm', 'fr-FR', '+0200');
   }
 
   publier(): void {
-    this.dataService.creerAnnonceCovoit( this.annonce);
+    this.dataSrv.creerAnnonceCovoit( this.annonce);
     this.ngOnInit();
   }
 
   ngOnInit(): void {
     this.annonce = mockAnnonce;
-    /*this.authSrv.collegueConnecteObs.subscribe(
-      colllegue => this.annonce.conducteur = collegue.matricule
-      )
-    );*/
+    this.authSrv.collegueConnecteObs.subscribe(
+      collegue => this.annonce.conducteur = collegue.email
+    );
   }
 }

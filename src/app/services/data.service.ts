@@ -13,7 +13,7 @@ export class DataService {
   constructor( private http: HttpClient) { }
 
   creerAnnonceCovoit( annonce: AnnonceCovoiturage): void {
-    console.log( 'INFO : Création d\'une annonce covoiturage');
+    console.log( 'INFO : Création d\'une annonce covoiturage \n' + JSON.stringify( annonce));
     const request: string = this.URL_BACKEND + 'reservations-covoiturage/';
     this.http.post<JSON>( request, JSON.stringify( annonce));
   }
