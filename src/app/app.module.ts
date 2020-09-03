@@ -20,6 +20,8 @@ import { CollabStatistiquesComponent } from './collab-statistiques/collab-statis
 import { CollabReservationsCovoituragePresentComponent } from './collab-reservations-covoiturage-present/collab-reservations-covoiturage-present.component';
 import { CollabReservationsCovoituragePastComponent } from './collab-reservations-covoiturage-past/collab-reservations-covoiturage-past.component';
 import { CollabReserverVehiculeEntrepriseComponent } from './collab-reserver-vehicule-entreprise/collab-reserver-vehicule-entreprise.component';
+import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-publier-annonce.component';
+import { CollabReservationTableComponent } from './collab-reservation-table/collab-reservation-table.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { CollabReserverVehiculeEntrepriseComponent } from './collab-reserver-veh
     CollabStatistiquesComponent,
     CollabReservationsCovoituragePresentComponent,
     CollabReservationsCovoituragePastComponent,
-    CollabReserverVehiculeEntrepriseComponent
+    CollabReserverVehiculeEntrepriseComponent,
+    CollabPublierAnnonceComponent,
+    CollabReservationTableComponent
   ],
   imports: [
     BrowserModule,
@@ -46,8 +50,8 @@ import { CollabReserverVehiculeEntrepriseComponent } from './collab-reserver-veh
     useClass: AuthInterceptorService,
     multi: true
   }, {
-      provide: LOCALE_ID,
-      useValue: 'fr-FR'
+    provide: LOCALE_ID,
+    useValue: 'fr-FR'
   }],
   bootstrap: [AppComponent]
 })

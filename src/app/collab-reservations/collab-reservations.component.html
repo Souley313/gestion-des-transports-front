@@ -18,11 +18,13 @@
   <div class="card-body">
     <h5 class="card-subtitle mb-2">En cours</h5>
     <div *ngIf="showCovoiturages">
-      <app-collab-reservations-covoiturage-present></app-collab-reservations-covoiturage-present>
+      <app-collab-reservation-table [reservationsCovoiturageAffichage]='reservationsCovoiturageEnCoursAffichage'>
+      </app-collab-reservation-table>
     </div>
     <h5 class="card-subtitle mb-2 text-muted mt-3">Historique</h5>
     <div *ngIf="showCovoiturages">
-      <app-collab-reservations-covoiturage-past></app-collab-reservations-covoiturage-past>
+      <app-collab-reservation-table [reservationsCovoiturageAffichage]='reservationsCovoiturageHistoriqueAffichage'>
+      </app-collab-reservation-table>
     </div>
   </div>
 </div>
