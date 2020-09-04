@@ -1,5 +1,6 @@
 import { ReservationSansChauffeur } from './../models/ReservationSansChauffeur';
 import { VehiculeSansChauffeur } from '../models/VehiculeSansChauffeur';
+import { AnnonceCovoiturageAffichage } from './../models/AnnonceCovoiturageAffichage';
 import { AnnonceCovoiturage } from './../models/AnnonceCovoiturage';
 import { ReservationCovoiturageAffichage } from './../models/ReservationCovoiturageAffichage';
 import { Observable } from 'rxjs';
@@ -19,11 +20,20 @@ export class DataService {
   creerAnnonceCovoit( annonce: AnnonceCovoiturage): void {
     console.log( 'INFO : Création d\'une annonce covoiturage \n');
     const request: string = this.URL_BACKEND + 'reservations-covoiturage/';
-    this.http.post<JSON>( request, JSON.stringify( annonce));
+    this.http.post<JSON>(request, JSON.stringify(annonce));
   }
 
-  getAllReservationsCovoiturageAffichage(matricule: string): Observable<ReservationCovoiturageAffichage[]> {
-    return this.http.get<ReservationCovoiturageAffichage[]>(this.URL_BACKEND + 'reservations-covoiturage/' + matricule);
+  getAllReservationsCovoiturageAffichage(): Observable<ReservationCovoiturageAffichage[]> {
+    return this.http.get<ReservationCovoiturageAffichage[]>(this.URL_BACKEND + 'reservations-covoiturage');
+  }
+
+  getAllAnnoncesCovoiturageAffichage(): Observable<AnnonceCovoiturageAffichage[]> {
+    return this.http.get<AnnonceCovoiturageAffichage[]>(this.URL_BACKEND + 'reservations-covoiturage');
+  }
+
+  MAjouterCommePassagerCovoiturage(annonce: AnnonceCovoiturageAffichage): Observable<AnnonceCovoiturageAffichage> {
+    return this.http.put<AnnonceCovoiturageAffichage>('http://localhost:8080/reservations-covoiturage', annonce);
+    // return this.http.put<AnnonceCovoiturageAffichage>(this.URL_BACKEND + 'reservations-covoiturage', annonce);
   }
 
   getVehiculesEntreprise(): Observable<VehiculeSansChauffeur[]> {
