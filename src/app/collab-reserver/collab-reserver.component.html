@@ -1,0 +1,25 @@
+<h1>Réserver un trajet</h1>
+<div class="card mb-3 w-100">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-primary" [ngClass]="{'active': showReserverCovoiturage}">
+          <input (click)="toggleCovoiturages()" type="checkbox" checked autocomplete="off">Covoiturages
+        </label>
+        <label class="btn btn-primary" [ngClass]="{'active': showReserverVehicule}">
+          <input (click)="toggleVehicules()" type="checkbox" autocomplete="off">Véhicules de service
+        </label>
+        <label class="btn btn-primary" [ngClass]="{'active': showReserverChauffeur}">
+          <input (click)="toggleCourses()" type="checkbox" autocomplete="off">Courses avec chauffeur
+        </label>
+      </div>
+    </li>
+  </ul>
+  <div class="card-body">
+    <div *ngIf="showReserverCovoiturage">
+      <app-collab-reserver-covoiturage></app-collab-reserver-covoiturage>
+    </div>
+    <div *ngIf="showReserverVehicule">
+    </div>
+  </div>
+</div>

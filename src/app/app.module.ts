@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-registerLocaleData( localeFr);
+registerLocaleData(localeFr);
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
@@ -19,6 +20,8 @@ import { CollabReservationsComponent } from './collab-reservations/collab-reserv
 import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
 import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-publier-annonce.component';
 import { CollabReservationTableComponent } from './collab-reservation-table/collab-reservation-table.component';
+import { CollabReserverCovoiturageComponent } from './collab-reserver-covoiturage/collab-reserver-covoiturage.component';
+import { CollabReserverComponent } from './collab-reserver/collab-reserver.component';
 
 
 @NgModule({
@@ -31,13 +34,16 @@ import { CollabReservationTableComponent } from './collab-reservation-table/coll
     CollabReservationsComponent,
     CollabStatistiquesComponent,
     CollabPublierAnnonceComponent,
-    CollabReservationTableComponent
+    CollabReservationTableComponent,
+    CollabReserverCovoiturageComponent,
+    CollabReserverComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
