@@ -3,7 +3,6 @@ import { AnnonceCovoiturage } from '../models/AnnonceCovoiturage';
 import { AuthService } from '../auth/auth.service';
 import { DataService } from '../services/data.service';
 import { formatDate } from '@angular/common';
-import { mockAnnonce } from '../mocks/MockAnnonceCovoiturage';
 
 @Component({
   selector: 'app-collab-publier-annonce',
@@ -26,7 +25,6 @@ export class CollabPublierAnnonceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.annonce = mockAnnonce;
     this.authSrv.collegueConnecteObs.subscribe(
       collegue => this.annonce.conducteur = collegue.matricule
     );

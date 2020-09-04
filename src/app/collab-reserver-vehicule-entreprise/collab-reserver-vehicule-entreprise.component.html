@@ -16,7 +16,7 @@
       <div class="form-group row" [ngClass]="{'was-validated': etatDateHeureRetour.touched}">
         <label for="dateHeure" class="col-md-5 col-form-label">Date / heure retour *</label>
         <div class="col-md-7">
-          <input type="datetime-local" min="{{ toto }}" class="form-control" #etatDateHeureRetour="ngModel"
+          <input type="datetime-local" min="{{ dateDepartStr }}" class="form-control" #etatDateHeureRetour="ngModel"
             name="dateHeure" [(ngModel)]="reservation.dateArrivee" required>
           <div class="valid-feedback"></div>
           <div class="invalid-feedback">La date et l'heure sont obligatoires</div>
@@ -24,53 +24,28 @@
       </div>
 
       <!-- Carousel véhicules -->
-      <div id="carouselVehicule" class="carousel slide carousel-fade" data-ride="carousel">
-        <ng-container>
-        <!--Indicators-->
+      <div id="carouselVehicule" class="carousel slide carousel-fade" data-ride="carousel"
+      *ngFor="let vehicule of vehicules">
+        <!--Indicators
         <ol class="carousel-indicators">
           <li data-target="#carouselVehicule" data-slide-to="0" class="active"></li>
           <li data-target="#carouselVehicule" data-slide-to="1"></li>
           <li data-target="#carouselVehicule" data-slide-to="2"></li>
-        </ol>
+        </ol>-->
         <!--/.Indicators-->
         <!--Slides-->
         <div class="carousel-inner" role="listbox">
           <div class="carousel-item active">
             <div class="view">
-              <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg"
-                alt="First slide">
+              <img class="d-block w-100" src={{ vehicule.photoUrl }} alt="Photo véhicule">
               <div class="mask rgba-black-light"></div>
             </div>
             <div class="carousel-caption">
-              <h3 class="h3-responsive">Light mask</h3>
-              <p>First text</p>
+              <h3 class="h3-responsive">{{ vehicule.immatriculation }}</h3>
+              <p>{{ vehicule.marque }} - {{ vehicule.marque }}</p><br/>
+              <p>{{ vehicule.categorie }}</p>
             </div>
           </div>
-          <div class="carousel-item">
-            <!--Mask color-->
-            <div class="view">
-              <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg"
-                alt="Second slide">
-              <div class="mask rgba-black-strong"></div>
-            </div>
-            <div class="carousel-caption">
-              <h3 class="h3-responsive">Strong mask</h3>
-              <p>Secondary text</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <!--Mask color-->
-            <div class="view">
-              <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg"
-                alt="Third slide">
-              <div class="mask rgba-black-slight"></div>
-            </div>
-            <div class="carousel-caption">
-              <h3 class="h3-responsive">Slight mask</h3>
-              <p>Third text</p>
-            </div>
-          </div>
-        </div>
         <!--/.Slides-->
         <!--Controls-->
         <a class="carousel-control-prev" href="#carouselVehicule" role="button" data-slide="prev">
@@ -82,10 +57,9 @@
           <span class="sr-only">Next</span>
         </a>
         <!--/.Controls-->
-      </ng-container>
       </div>
       <!--/.Carousel Wrapper-->
-
+      </div>
       <!-- Bouton réserver -->
       <div class="text-center" style="margin: 10px;">
         <button class="btn btn-secondary" *ngIf="etatForm.invalid">Réserver</button>

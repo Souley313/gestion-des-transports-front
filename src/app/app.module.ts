@@ -17,8 +17,6 @@ import { CollabMenuComponent } from './collab-menu/collab-menu.component';
 import { CollabAnnoncesComponent } from './collab-annonces/collab-annonces.component';
 import { CollabReservationsComponent } from './collab-reservations/collab-reservations.component';
 import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
-import { CollabReservationsCovoituragePresentComponent } from './collab-reservations-covoiturage-present/collab-reservations-covoiturage-present.component';
-import { CollabReservationsCovoituragePastComponent } from './collab-reservations-covoiturage-past/collab-reservations-covoiturage-past.component';
 import { CollabReserverVehiculeEntrepriseComponent } from './collab-reserver-vehicule-entreprise/collab-reserver-vehicule-entreprise.component';
 import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-publier-annonce.component';
 import { CollabReservationTableComponent } from './collab-reservation-table/collab-reservation-table.component';
@@ -33,8 +31,6 @@ import { CollabReservationTableComponent } from './collab-reservation-table/coll
     CollabAnnoncesComponent,
     CollabReservationsComponent,
     CollabStatistiquesComponent,
-    CollabReservationsCovoituragePresentComponent,
-    CollabReservationsCovoituragePastComponent,
     CollabReserverVehiculeEntrepriseComponent,
     CollabPublierAnnonceComponent,
     CollabReservationTableComponent

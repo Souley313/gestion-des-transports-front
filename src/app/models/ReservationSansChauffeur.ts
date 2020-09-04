@@ -1,5 +1,3 @@
-import { formatDate } from '@angular/common';
-import { VehiculeEntreprise } from './VehiculeEntreprise';
 
 export class ReservationSansChauffeur {
 
@@ -7,6 +5,6 @@ export class ReservationSansChauffeur {
     public conducteur: string = '',
     public dateDepart: Date = new Date(),
     public dateArrivee: Date = new Date(),
-    public vehicule: VehiculeEntreprise = new VehiculeEntreprise()
+    public vehiculeId: number = 0
   ) {}
 }
