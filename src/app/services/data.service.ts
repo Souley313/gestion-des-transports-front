@@ -29,4 +29,9 @@ export class DataService {
     return this.http.get<AnnonceCovoiturageAffichage[]>(this.URL_BACKEND + 'reservations-covoiturage');
   }
 
+  MAjouterCommePassagerCovoiturage(annonce: AnnonceCovoiturageAffichage): Observable<AnnonceCovoiturageAffichage> {
+    return this.http.put<AnnonceCovoiturageAffichage>('http://localhost:8080/reservations-covoiturage', annonce);
+    // return this.http.put<AnnonceCovoiturageAffichage>(this.URL_BACKEND + 'reservations-covoiturage', annonce);
+  }
+
 }
