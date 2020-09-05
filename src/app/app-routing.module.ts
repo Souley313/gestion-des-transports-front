@@ -1,3 +1,5 @@
+import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-publier-annonce.component';
+import { AdminVehiculesEntrepriseComponent } from './admin-vehicules-entreprise/admin-vehicules-entreprise.component';
 import { CollabReserverComponent } from './collab-reserver/collab-reserver.component';
 import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
 import { CollabAnnoncesComponent } from './collab-annonces/collab-annonces.component';
@@ -14,8 +16,10 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'collaborateur/reservations', component: CollabReservationsComponent },
   { path: 'collaborateur/annonces', component: CollabAnnoncesComponent },
+  { path: 'collaborateur/annonces/creer', component: CollabPublierAnnonceComponent },
   { path: 'collaborateur/statistiques', component: CollabStatistiquesComponent },
   { path: 'collaborateur/reserver', component: CollabReserverComponent },
+  { path: 'administrateur/vehicules', component: AdminVehiculesEntrepriseComponent },
   { path: '', redirectTo: '/tech', pathMatch: 'full' }
 ];
 

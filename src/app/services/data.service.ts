@@ -1,3 +1,4 @@
+import { VehiculeEntrepriseInfosGenerales } from './../models/VehiculeEntrepriseInfosGenerales';
 import { AnnonceCovoiturageAffichage } from './../models/AnnonceCovoiturageAffichage';
 import { AnnonceCovoiturage } from './../models/AnnonceCovoiturage';
 import { ReservationCovoiturageAffichage } from './../models/ReservationCovoiturageAffichage';
@@ -30,8 +31,14 @@ export class DataService {
   }
 
   MAjouterCommePassagerCovoiturage(annonce: AnnonceCovoiturageAffichage): Observable<AnnonceCovoiturageAffichage> {
-    return this.http.put<AnnonceCovoiturageAffichage>('http://localhost:8080/reservations-covoiturage', annonce);
-    // return this.http.put<AnnonceCovoiturageAffichage>(this.URL_BACKEND + 'reservations-covoiturage', annonce);
+    return this.http.put<AnnonceCovoiturageAffichage>(this.URL_BACKEND + 'reservations-covoiturage', annonce);
   }
 
+  getAllVehiculesEntreprise(): Observable<VehiculeEntrepriseInfosGenerales[]> {
+    return this.http.get<VehiculeEntrepriseInfosGenerales[]>(this.URL_BACKEND + 'vehicules-entreprise');
+  }
+
+  creerVehiculeEntreprise(vehicule: VehiculeEntrepriseInfosGenerales): Observable<VehiculeEntrepriseInfosGenerales> {
+    return this.http.post<VehiculeEntrepriseInfosGenerales>(this.URL_BACKEND + 'vehicules-entreprise', vehicule);
+  }
 }

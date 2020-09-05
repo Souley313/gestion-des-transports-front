@@ -22,6 +22,7 @@ import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-p
 import { CollabReservationTableComponent } from './collab-reservation-table/collab-reservation-table.component';
 import { CollabReserverCovoiturageComponent } from './collab-reserver-covoiturage/collab-reserver-covoiturage.component';
 import { CollabReserverComponent } from './collab-reserver/collab-reserver.component';
+import { AdminVehiculesEntrepriseComponent } from './admin-vehicules-entreprise/admin-vehicules-entreprise.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { CollabReserverComponent } from './collab-reserver/collab-reserver.compo
     CollabPublierAnnonceComponent,
     CollabReservationTableComponent,
     CollabReserverCovoiturageComponent,
-    CollabReserverComponent
+    CollabReserverComponent,
+    AdminVehiculesEntrepriseComponent
   ],
   imports: [
     BrowserModule,
