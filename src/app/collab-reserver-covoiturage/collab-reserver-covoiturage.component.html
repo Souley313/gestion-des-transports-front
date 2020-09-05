@@ -1,0 +1,95 @@
+<h5 class="card-subtitle mb-2">Covoiturages</h5>
+<div class="form-group row">
+  <label for="depart" class="col-md-5 col-form-label">Adresse de départ</label>
+  <div class="col-md-7">
+    <input type="text" class="form-control" #etatDepart="ngModel" name="depart"
+      [(ngModel)]="rechercheReservationCovoiturage.infosDepart" (change)="updateAffichageDepart()">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="destination" class="col-md-5 col-form-label">Adresse de destination</label>
+  <div class="col-md-7">
+    <input type="text" class="form-control" #etatDestination="ngModel" name="destination"
+      [(ngModel)]="rechercheReservationCovoiturage.infosDestination" (change)="updateAffichageDestination()">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="dateHeure" class="col-md-5 col-form-label">Date / heure</label>
+  <div class="col-md-7">
+    <input type="datetime-local" min="{{ jstoday }}" class="form-control" #etatDateHeure="ngModel" name="dateHeure"
+      [(ngModel)]="rechercheReservationCovoiturage.dateDepart" (change)="updateAffichageDate()">
+  </div>
+</div>
+
+<div *ngIf="isSubmitted && !closed">
+  <ngb-alert [type]="'success'" (close)="close()">La réservation a bien été
+    enregistrée</ngb-alert>
+</div>
+<div *ngIf="hasError && !closed">
+  <ngb-alert [type]="'danger'" (close)="close()">{{errorReservation.error.status}} : {{errorReservation.error.error}}
+    {{errorReservation.message}}
+  </ngb-alert>
+</div>
+
+<table class="table table-striped w-auto" *ngIf="afficherAnnonces">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Départ</th>
+      <th>Destination</th>
+      <th>Véhicule</th>
+      <th>Conducteur</th>
+      <th>Places</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let annonce of resultatsRecherche">
+      <td>{{annonce.dateDepart | date:'dd/MM/yyyy hh:mm'}}</td>
+      <td>{{annonce.infosDepart}}</td>
+      <td>{{annonce.infosDestination}}</td>
+      <td>{{annonce.infosVehiculeParticulier}}</td>
+      <td>{{annonce.infosConducteur}}</td>
+      <td>{{annonce.nbPlacesDisponibles}}</td>
+      <td><button class="btn btn-secondary"
+          (click)="afficherConfirmationReservation(annonce, mymodal)">Réserver</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Détails du covoiturage</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-4">Départ</div>
+      <div class="col-8">{{reservationModal.infosDepart}}</div>
+    </div>
+    <div class="row">
+      <div class="col-4">Destination</div>
+      <div class="col-8">{{reservationModal.infosDestination}}</div>
+    </div>
+    <div class="row">
+      <div class="col-4">Date de départ</div>
+      <div class="col-8">{{reservationModal.dateDepart | date:'dd/MM/yyyy hh:mm'}}</div>
+    </div>
+    <div class="row">
+      <div class="col-4">Véhicule</div>
+      <div class="col-8">{{reservationModal.infosVehiculeParticulier}}</div>
+    </div>
+    <div class="row">
+      <div class="col-4">Conducteur</div>
+      <div class="col-8">{{reservationModal.infosConducteur}}</div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary mr-5" (click)="modal.close('Save click')">Annuler</button>
+    <button type="button" class="btn btn-primary"
+      (click)="ajouterPassager(reservationModal); modal.close('Save click')">Confirmer</button>
+  </div>
+</ng-template>

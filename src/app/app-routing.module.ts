@@ -1,3 +1,4 @@
+import { CollabReserverComponent } from './collab-reserver/collab-reserver.component';
 import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
 import { CollabAnnoncesComponent } from './collab-annonces/collab-annonces.component';
 import { CollabReservationsComponent } from './collab-reservations/collab-reservations.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'collaborateur/reservations', component: CollabReservationsComponent },
   { path: 'collaborateur/annonces', component: CollabAnnoncesComponent },
   { path: 'collaborateur/statistiques', component: CollabStatistiquesComponent },
+  { path: 'collaborateur/reserver', component: CollabReserverComponent },
   { path: '', redirectTo: '/tech', pathMatch: 'full' }
 ];
 

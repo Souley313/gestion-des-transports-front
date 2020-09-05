@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-registerLocaleData( localeFr);
+registerLocaleData(localeFr);
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
@@ -23,6 +24,9 @@ import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 import { AdminChauffeursComponent } from './admin-chauffeurs/admin-chauffeurs.component';
 import { AdminVehiculesComponent } from './admin-vehicules/admin-vehicules.component';
 
+import { CollabReserverCovoiturageComponent } from './collab-reserver-covoiturage/collab-reserver-covoiturage.component';
+import { CollabReserverComponent } from './collab-reserver/collab-reserver.component';
+
 
 @NgModule({
   declarations: [
@@ -37,13 +41,17 @@ import { AdminVehiculesComponent } from './admin-vehicules/admin-vehicules.compo
     CollabReservationTableComponent,
     AdminMenuComponent,
     AdminChauffeursComponent,
-    AdminVehiculesComponent
+    AdminVehiculesComponent,
+    CollabReserverCovoiturageComponent,
+    CollabReserverComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
