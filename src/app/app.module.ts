@@ -21,12 +21,11 @@ import { CollabReservationsComponent } from './collab-reservations/collab-reserv
 import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
 import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-publier-annonce.component';
 import { CollabReservationTableComponent } from './collab-reservation-table/collab-reservation-table.component';
-import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 import { AdminChauffeursComponent } from './admin-chauffeurs/admin-chauffeurs.component';
-import { AdminVehiculesComponent } from './admin-vehicules/admin-vehicules.component';
 
 import { CollabReserverCovoiturageComponent } from './collab-reserver-covoiturage/collab-reserver-covoiturage.component';
 import { CollabReserverComponent } from './collab-reserver/collab-reserver.component';
+import { AdminVehiculesEntrepriseComponent } from './admin-vehicules-entreprise/admin-vehicules-entreprise.component';
 
 
 @NgModule({
@@ -40,12 +39,10 @@ import { CollabReserverComponent } from './collab-reserver/collab-reserver.compo
     CollabStatistiquesComponent,
     CollabPublierAnnonceComponent,
     CollabReservationTableComponent,
-    AdminMenuComponent,
     AdminChauffeursComponent,
-    AdminVehiculesComponent,
     CollabReserverCovoiturageComponent,
-    CollabReserverComponent
-
+    CollabReserverComponent,
+    AdminVehiculesEntrepriseComponent
   ],
   imports: [
     BrowserModule,
