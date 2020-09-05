@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { Collegue } from '../auth/auth.domains';
 import { ChauffeurDto } from '../models/ChauffeurDto';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CollegueDto } from '../models/CollegueDto';
 
 @Component({
   selector: 'app-admin-chauffeurs',
@@ -10,16 +11,24 @@ import { ChauffeurDto } from '../models/ChauffeurDto';
 })
 export class AdminChauffeursComponent implements OnInit {
 
-  collegue: ChauffeurDto;
-  collegues: ChauffeurDto[];
+  chauffeur = new ChauffeurDto();
+  chauffeurs: ChauffeurDto[];
+  chauffeursFiltered: ChauffeurDto[];
+  idChauffeur: number;
+  matricule = '';
+  nom = '';
+  prenom = '';
 
-  constructor(private dataSrv: DataService) { }
+  constructor(private dataSrv: DataService, private modalService: NgbModal) { }
 
-  ngOnInit(): void {
-     this.dataSrv.getAllChauffeurs()
-      .subscribe(chauffeurs => {
-        this.collegues = chauffeurs;
-      });
+  openModal(modal) {
+    this.modalService.open(modal);
   }
 
+  ngOnInit(): void {
+      this.dataSrv.getAllChauffeurs().subscribe(chauffeurs => {
+        this.chauffeurs = chauffeurs;
+        this.chauffeursFiltered = chauffeurs;
+      });
+  }
 }

@@ -5,7 +5,11 @@ export class ChauffeurDto {
       public matricule: string = '',
       public nom: string = '',
       public prenom: string = '',
-      public email: string = ''
+      public telephone?: string,
+      public email?: string,
+      public categoriePermis?: string ,
+      public photoUrl?: string,
+
     ) {}
 
   }

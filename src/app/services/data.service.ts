@@ -31,15 +31,11 @@ export class DataService {
   }
 
   MAjouterCommePassagerCovoiturage(annonce: AnnonceCovoiturageAffichage): Observable<AnnonceCovoiturageAffichage> {
-    return this.http.put<AnnonceCovoiturageAffichage>('http://localhost:8080/reservations-covoiturage', annonce);
-    // return this.http.put<AnnonceCovoiturageAffichage>(this.URL_BACKEND + 'reservations-covoiturage', annonce);
+    return this.http.put<AnnonceCovoiturageAffichage>(this.URL_BACKEND + 'reservations-covoiturage', annonce);
   }
 
- 
   getAllChauffeurs(): Observable<ChauffeurDto[]> {
-      return this.http.get<ChauffeurDto[]>(this.URL_BACKEND + 'administrateur/chauffeurs', {
-        withCredentials: true
-      });
+      return this.http.get<ChauffeurDto[]>(this.URL_BACKEND + 'administrateur/chauffeurs');
   }
 
 }
