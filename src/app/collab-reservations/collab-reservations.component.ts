@@ -34,7 +34,7 @@ export class CollabReservationsComponent implements OnInit, OnDestroy {
       () => { }
     );
 
-    this.dataService.getAllReservationsCovoiturageAffichage().subscribe(
+    this.dataService.getAllReservationsCovoiturageAffichageByPassager().subscribe(
       value => {
         this.reservationsCovoiturageHistoriqueAffichage = value.filter(reservation => new Date(reservation.dateDepart).getTime() < Date.now());
         this.reservationsCovoiturageEnCoursAffichage = value.filter(reservation => new Date(reservation.dateDepart).getTime() >= Date.now());

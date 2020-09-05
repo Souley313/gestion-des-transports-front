@@ -21,8 +21,8 @@ export class DataService {
     this.http.post<JSON>(request, JSON.stringify(annonce));
   }
 
-  getAllReservationsCovoiturageAffichage(): Observable<ReservationCovoiturageAffichage[]> {
-    return this.http.get<ReservationCovoiturageAffichage[]>(this.URL_BACKEND + 'reservations-covoiturage');
+  getAllReservationsCovoiturageAffichageByPassager(): Observable<ReservationCovoiturageAffichage[]> {
+    return this.http.get<ReservationCovoiturageAffichage[]>(this.URL_BACKEND + 'reservations-covoiturage/me');
   }
 
   getAllAnnoncesCovoiturageAffichage(): Observable<AnnonceCovoiturageAffichage[]> {
