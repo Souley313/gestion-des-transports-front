@@ -1,0 +1,101 @@
+<div class="row">
+  <div class="col-6">
+    <h1> Gérer les chauffeurs</h1>
+  </div>
+</div>
+
+<form>
+      <div class="row align-items-center mt-3">
+        <!--BARRE RECHERCHE MATRICULE-->
+        <div class="col-md-3">
+          <label class="ml-2">Matricule </label>
+        </div>
+        <div class="col-md-4">
+          <input type="search" class="form-control" name="maricule" [(ngModel)]="matricule" placeholder="Recherche par matricule">
+        </div>
+      </div>
+      <div class="row align-items-center mt-3">
+        <!--BARRE RECHERCHE NOM-->
+        <div class="col-md-3">
+          <label class="ml-2">Nom</label>
+        </div>
+        <div class="col-md-4">
+          <input type="search" class="form-control" name="searchLastname" [(ngModel)]="nom"  placeholder="Recherche par nom">
+        </div>
+      </div>
+      <div class="row align-items-center mt-3">
+        <!--BARRE RECHERCHE PRENOM-->
+        <div class="col-md-3">
+          <label class="ml-2">Prenom</label>
+        </div>
+        <div class="col-md-4">
+          <input type="search" class="form-control" name="searchFirstname" [(ngModel)]="prenom" placeholder="Recherche par prénom">
+        </div>
+        <div class="col-md-5">
+          <button type="button" mdbBtn color="primary" (click)="openModal(content)">Ajouter un chauffeur</button>
+        </div>
+      </div>
+</form>
+
+<div class="card-deck"> 
+  <div class="card my-3 mx-1 p-1" style="max-width: 540px;" *ngFor="let chauffeur of chauffeurs | filter:nom | filter:prenom | filter:matricule">
+    <div class="card-header">
+          <h4 class="my-0 font-weight-normal">{{chauffeur.nom}} {{chauffeur.prenom}}</h4>
+    </div>
+     <div class="row no-gutters">
+          <div class="col-md-4 my-3 ml-1">
+            <img src="{{chauffeur.photoUrl}}" class="img-fluid z-depth-1 rounded-circle" alt="No image">
+          </div>
+          <div class="col-md-7">
+            <div class="card-body">
+              <div class="card-text">
+                <dl class="row">
+                  <dt class="col-sm-4">Matricule</dt>
+                  <dd class="col-sm-8">{{chauffeur.matricule}}</dd>
+                  <dt class="col-sm-4">Nom </dt>
+                  <dd class="col-sm-8">{{chauffeur.nom}}</dd>
+                  <dt class="col-sm-4">Prenom</dt>
+                  <dd class="col-sm-8">{{chauffeur.prenom}}</dd>
+                  <dt class="col-sm-4">Permis</dt>
+                  <dd class="col-sm-8">{{chauffeur.categoriePermis}}</dd>
+                  <dt class="col-sm-4">Email</dt>
+                  <dd class="col-sm-8">{{chauffeur.email}}</dd>
+                  <dt class="col-sm-4">Téléphone</dt>
+                  <dd class="col-sm-8">{{chauffeur.telephone}}</dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
+
+<!--FENETRE MODALE: AJOUT CHAUFFEUR-->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title w-100" id="myModalLabel">Nouveau chauffeur</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row align-items-center mt-3">
+      <!--BARRE RECHERCHE MATRICULE-->
+      <div class="col-md-3">
+
+        <label class="ml-2">Matricule </label>
+
+      </div>
+
+      <div class="col-md-9">
+        <form>
+          <input type="search" class="form-control" name="searchName"
+            placeholder="Recherche par matricule">
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+      (click)="modal.dismiss()" mdbWavesEffect>Annuler</button>
+    <button type="button" name="id" mdbBtn color="secondary" class="waves-light" aria-label="Close" mdbWavesEffect>Ajouter</button>
+  </div>
+</ng-template>

@@ -7,11 +7,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { TechComponent } from './tech/tech.component';
 import { StatutConnecteService } from './auth/statut-connecte.service';
 import { AuthComponent } from './auth/auth.component';
+import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+import { AdminChauffeursComponent } from './admin-chauffeurs/admin-chauffeurs.component';
+import { AdminVehiculesComponent } from './admin-vehicules/admin-vehicules.component';
 
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, // /tech accessible uniquement si connecté
   { path: 'auth', component: AuthComponent },
+  { path: 'administrateur', component: AdminMenuComponent, canActivate: [StatutConnecteService]},
+  { path: 'admin/chauffeurs', component: AdminChauffeursComponent, canActivate: [StatutConnecteService]},
+  { path: 'admin/vehicules', component: AdminVehiculesComponent, canActivate: [StatutConnecteService]},
   { path: 'collaborateur/reservations', component: CollabReservationsComponent },
   { path: 'collaborateur/annonces', component: CollabAnnoncesComponent },
   { path: 'collaborateur/statistiques', component: CollabStatistiquesComponent },

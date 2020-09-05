@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
+import { ChauffeurDto } from '../models/ChauffeurDto';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +31,11 @@ export class DataService {
   }
 
   MAjouterCommePassagerCovoiturage(annonce: AnnonceCovoiturageAffichage): Observable<AnnonceCovoiturageAffichage> {
-    return this.http.put<AnnonceCovoiturageAffichage>('http://localhost:8080/reservations-covoiturage', annonce);
-    // return this.http.put<AnnonceCovoiturageAffichage>(this.URL_BACKEND + 'reservations-covoiturage', annonce);
+    return this.http.put<AnnonceCovoiturageAffichage>(this.URL_BACKEND + 'reservations-covoiturage', annonce);
+  }
+
+  getAllChauffeurs(): Observable<ChauffeurDto[]> {
+      return this.http.get<ChauffeurDto[]>(this.URL_BACKEND + 'administrateur/chauffeurs');
   }
 
 }

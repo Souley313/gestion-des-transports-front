@@ -14,12 +14,17 @@ import { StatutConnecteService } from './auth/statut-connecte.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CollabMenuComponent } from './collab-menu/collab-menu.component';
 import { CollabAnnoncesComponent } from './collab-annonces/collab-annonces.component';
 import { CollabReservationsComponent } from './collab-reservations/collab-reservations.component';
 import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
 import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-publier-annonce.component';
 import { CollabReservationTableComponent } from './collab-reservation-table/collab-reservation-table.component';
+import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+import { AdminChauffeursComponent } from './admin-chauffeurs/admin-chauffeurs.component';
+import { AdminVehiculesComponent } from './admin-vehicules/admin-vehicules.component';
+
 import { CollabReserverCovoiturageComponent } from './collab-reserver-covoiturage/collab-reserver-covoiturage.component';
 import { CollabReserverComponent } from './collab-reserver/collab-reserver.component';
 
@@ -35,14 +40,19 @@ import { CollabReserverComponent } from './collab-reserver/collab-reserver.compo
     CollabStatistiquesComponent,
     CollabPublierAnnonceComponent,
     CollabReservationTableComponent,
+    AdminMenuComponent,
+    AdminChauffeursComponent,
+    AdminVehiculesComponent,
     CollabReserverCovoiturageComponent,
     CollabReserverComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    Ng2SearchPipeModule,
     NgbModule
   ],
   providers: [{
