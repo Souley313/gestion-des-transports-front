@@ -10,7 +10,6 @@ import { TechComponent } from './tech/tech.component';
 import { StatutConnecteService } from './auth/statut-connecte.service';
 import { AuthComponent } from './auth/auth.component';
 import { AdminChauffeursComponent } from './admin-chauffeurs/admin-chauffeurs.component';
-import { AdminVehiculesComponent } from './admin-vehicules/admin-vehicules.component';
 
 
 const routes: Routes = [
