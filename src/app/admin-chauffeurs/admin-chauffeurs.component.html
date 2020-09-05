@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-6">
+    <h1> Gérer les chauffeurs</h1>
+  </div>
+</div>
+
+<div class="card mb-3" *ngIf="collegues?.length>0">
+  <img src="" alt="Photo" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">{{collegue.nom}} {{collegue.prenom}}</h5>
+    <div class="row">
+      <div class="col-12 col-sm-6 font-weight-bold">
+        <p>Nom</p>
+      </div>
+      <div class="col-12 col-sm-6">
+        <p>{{collegue.nom}}</p>
+      </div>
+      <div class="col-12 col-sm-6 font-weight-bold">
+        <p>Prénoms</p>
+      </div>
+      <div class="col-12 col-sm-6">
+        <p>{{collegue.prenom}}</p>
+      </div>
+      <div class="col-12 col-sm-6 font-weight-bold">
+        <p>Matricule</p>
+      </div>
+      <div class="col-12 col-sm-6">
+        <p>{{collegue.matricule}}</p>
+      </div>
+      <div  class="col-12 col-sm-6 font-weight-bold">
+        <p>Email</p>
+      </div>
+      <div class="col-12 col-sm-6">
+        <p>{{collegue.email}}</p>
+      </div>
+      <div class="col-12 col-sm-6 font-weight-bold">
+        <p>Téléphone</p>
+      </div>
+      <div class="col-12 col-sm-6">
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>

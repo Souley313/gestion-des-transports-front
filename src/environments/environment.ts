@@ -5,7 +5,7 @@ import { config } from './common';
 
 export const environment = Object.assign({
   production: false,
-  baseUrl: 'https://gestion-des-transports-back.herokuapp.com/'
+  baseUrl: 'http://localhost:8080/'
 }, config);
 
 /*
