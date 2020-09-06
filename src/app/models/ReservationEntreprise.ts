@@ -1,5 +1,5 @@
 
-export class ReservationSansChauffeur {
+export class ReservationEntreprise {
 
   constructor(
     public conducteur: string = '',

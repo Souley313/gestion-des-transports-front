@@ -1,5 +1,5 @@
 import { VehiculeSansChauffeur } from './../models/VehiculeSansChauffeur';
-import { ReservationSansChauffeur } from './../models/ReservationSansChauffeur';
+import { ReservationEntreprise } from '../models/ReservationEntreprise';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../auth/auth.service';
@@ -13,7 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CollabReserverVehiculeEntrepriseComponent implements OnInit {
 
-  reservation = new ReservationSansChauffeur();
+  reservation = new ReservationEntreprise();
   today = new Date();
   todayStr: string;
   dateDepartMin: string;
@@ -21,6 +21,7 @@ export class CollabReserverVehiculeEntrepriseComponent implements OnInit {
   vehicules: VehiculeSansChauffeur[];
   vehiculeSelected: VehiculeSansChauffeur = new VehiculeSansChauffeur();
   dateValid = false;
+  chauffeur = false;
 
   constructor( private authSrv: AuthService, private dataService: DataService, private modalService: NgbModal) {
     this.dateDepartMin = formatDate( this.today, 'yyyy-MM-ddThh:mm', 'fr-FR', '+0200');
@@ -32,7 +33,7 @@ export class CollabReserverVehiculeEntrepriseComponent implements OnInit {
 
   datesValides(): void {
     this.dateValid = this.vehicules.includes( this.vehiculeSelected) &&
-      !this.vehiculeSelected.dispoReservation.filter( reserv => reserv.statutReservation === 'ACCEPTEE')
+      !this.vehiculeSelected.dispoReservation.filter( reserv => reserv.statutReservation === 'ACCEPTEE' || 'EN_ATTENTE')
       .some( datesInvalides =>
         ( new Date( this.reservation.dateDepart).getTime() > new Date( datesInvalides.dateDepart).getTime()
         && new Date( this.reservation.dateDepart).getTime() < new Date( datesInvalides.dateArrivee).getTime())
@@ -52,9 +53,13 @@ export class CollabReserverVehiculeEntrepriseComponent implements OnInit {
   }
 
   reserver(): void {
-    this.dataService.postReservationSansChauffeur( this.reservation);
-    this.reservation = new ReservationSansChauffeur();
+    if ( this.chauffeur) {
+      this.reservation.conducteur = 'AVEC_CHAUFFEUR';
+    }
+    this.dataService.postReservationEntreprise( this.reservation);
+    this.reservation = new ReservationEntreprise();
     this.vehiculeSelected = new VehiculeSansChauffeur();
+    this.chauffeur = false;
     this.setMinDateRetour();
   }
 

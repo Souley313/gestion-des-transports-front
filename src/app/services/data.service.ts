@@ -1,4 +1,4 @@
-import { ReservationSansChauffeur } from './../models/ReservationSansChauffeur';
+import { ReservationEntreprise } from '../models/ReservationEntreprise';
 import { VehiculeSansChauffeur } from '../models/VehiculeSansChauffeur';
 import { VehiculeEntrepriseInfosGenerales } from './../models/VehiculeEntrepriseInfosGenerales';
 import { AnnonceCovoiturageAffichage } from './../models/AnnonceCovoiturageAffichage';
@@ -43,10 +43,10 @@ export class DataService {
     return this.http.get<VehiculeSansChauffeur[]>( request);
   }
 
-  postReservationSansChauffeur( reservation: ReservationSansChauffeur): void {
+  postReservationEntreprise( reservation: ReservationEntreprise): void {
     console.log( 'INFO : Création d\'une réserrvation sans chauffeur \n' + JSON.stringify( reservation));
     const request: string = this.URL_BACKEND + 'reservation-entreprise/';
-    this.http.post<ReservationSansChauffeur>( request, reservation).subscribe(
+    this.http.post<ReservationEntreprise>( request, reservation).subscribe(
       reserv => console.log( reserv)
     );
   }
