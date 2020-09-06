@@ -1,5 +1,5 @@
 import { VehiculeSansChauffeur } from './../models/VehiculeSansChauffeur';
-import { ReservationSansChauffeur } from './../models/ReservationSansChauffeur';
+import { ReservationEntreprise } from '../models/ReservationEntreprise';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../auth/auth.service';
@@ -13,7 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CollabReserverVehiculeEntrepriseComponent implements OnInit {
 
-  reservation = new ReservationSansChauffeur();
+  reservation = new ReservationEntreprise();
   today = new Date();
   todayStr: string;
   dateDepartMin: string;
@@ -32,7 +32,7 @@ export class CollabReserverVehiculeEntrepriseComponent implements OnInit {
 
   datesValides(): void {
     this.dateValid = this.vehicules.includes( this.vehiculeSelected) &&
-      !this.vehiculeSelected.dispoReservation.filter( reserv => reserv.statutReservation === 'ACCEPTEE')
+      !this.vehiculeSelected.dispoReservation.filter( reserv => reserv.statutReservation === 'ACCEPTEE' || 'EN_ATTENTE')
       .some( datesInvalides =>
         ( new Date( this.reservation.dateDepart).getTime() > new Date( datesInvalides.dateDepart).getTime()
         && new Date( this.reservation.dateDepart).getTime() < new Date( datesInvalides.dateArrivee).getTime())
@@ -52,8 +52,8 @@ export class CollabReserverVehiculeEntrepriseComponent implements OnInit {
   }
 
   reserver(): void {
-    this.dataService.postReservationSansChauffeur( this.reservation);
-    this.reservation = new ReservationSansChauffeur();
+    this.dataService.postReservationEntreprise( this.reservation);
+    this.reservation = new ReservationEntreprise();
     this.vehiculeSelected = new VehiculeSansChauffeur();
     this.setMinDateRetour();
   }
@@ -63,7 +63,7 @@ export class CollabReserverVehiculeEntrepriseComponent implements OnInit {
       vehicules => this.vehicules = vehicules
      );
     this.authSrv.collegueConnecteObs.subscribe(
-      collegue => this.reservation.conducteur = collegue.matricule
+      collegue => this.reservation.reservant = collegue.matricule
     );
   }
 
