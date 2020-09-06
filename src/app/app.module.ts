@@ -21,6 +21,7 @@ import { CollabReservationsComponent } from './collab-reservations/collab-reserv
 import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
 import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-publier-annonce.component';
 import { CollabReservationTableComponent } from './collab-reservation-table/collab-reservation-table.component';
+import { CollabReservationVehiculeTableComponent } from './collab-reservation-vehicule-table/collab-reservation-vehicule-table.component';
 import { AdminChauffeursComponent } from './admin-chauffeurs/admin-chauffeurs.component';
 
 import { CollabReserverCovoiturageComponent } from './collab-reserver-covoiturage/collab-reserver-covoiturage.component';
@@ -39,6 +40,7 @@ import { AdminVehiculesEntrepriseComponent } from './admin-vehicules-entreprise/
     CollabStatistiquesComponent,
     CollabPublierAnnonceComponent,
     CollabReservationTableComponent,
+    CollabReservationVehiculeTableComponent,
     AdminChauffeursComponent,
     CollabReserverCovoiturageComponent,
     CollabReserverComponent,
