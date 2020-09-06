@@ -46,4 +46,11 @@ export class DataService {
   getAllChauffeurs(): Observable<ChauffeurDto[]> {
     return this.http.get<ChauffeurDto[]>(this.URL_BACKEND + 'administrateur/chauffeurs');
   }
+
+  createChauffeur(matricule: any): Observable<string> {
+    return this.http.patch<any>(
+      this.URL_BACKEND + 'administrateur/chauffeurs/${matricule}', {
+      withCredentials: true
+    });
+  }
 }
