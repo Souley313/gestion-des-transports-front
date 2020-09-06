@@ -1,3 +1,5 @@
+import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-publier-annonce.component';
+import { AdminVehiculesEntrepriseComponent } from './admin-vehicules-entreprise/admin-vehicules-entreprise.component';
 import { CollabReserverComponent } from './collab-reserver/collab-reserver.component';
 import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
 import { CollabAnnoncesComponent } from './collab-annonces/collab-annonces.component';
@@ -7,15 +9,19 @@ import { Routes, RouterModule } from '@angular/router';
 import { TechComponent } from './tech/tech.component';
 import { StatutConnecteService } from './auth/statut-connecte.service';
 import { AuthComponent } from './auth/auth.component';
+import { AdminChauffeursComponent } from './admin-chauffeurs/admin-chauffeurs.component';
 
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, // /tech accessible uniquement si connecté
   { path: 'auth', component: AuthComponent },
-  { path: 'collaborateur/reservations', component: CollabReservationsComponent },
-  { path: 'collaborateur/annonces', component: CollabAnnoncesComponent },
-  { path: 'collaborateur/statistiques', component: CollabStatistiquesComponent },
-  { path: 'collaborateur/reserver', component: CollabReserverComponent },
+  { path: 'administrateur/chauffeurs', component: AdminChauffeursComponent, canActivate: [StatutConnecteService] },
+  { path: 'collaborateur/reservations', component: CollabReservationsComponent, canActivate: [StatutConnecteService] },
+  { path: 'collaborateur/annonces', component: CollabAnnoncesComponent, canActivate: [StatutConnecteService] },
+  { path: 'collaborateur/annonces/creer', component: CollabPublierAnnonceComponent, canActivate: [StatutConnecteService] },
+  { path: 'collaborateur/statistiques', component: CollabStatistiquesComponent, canActivate: [StatutConnecteService] },
+  { path: 'collaborateur/reserver', component: CollabReserverComponent, canActivate: [StatutConnecteService] },
+  { path: 'administrateur/vehicules', component: AdminVehiculesEntrepriseComponent, canActivate: [StatutConnecteService] },
   { path: '', redirectTo: '/tech', pathMatch: 'full' }
 ];
 

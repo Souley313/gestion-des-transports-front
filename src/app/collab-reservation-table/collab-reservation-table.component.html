@@ -1,5 +1,5 @@
 <p class="card-text">Mes covoiturages</p>
-<table class="table table-striped w-auto">
+<table class="table table-striped w-auto" *ngIf="reservationsCovoiturageAffichage.length != 0">
   <thead>
     <tr>
       <th>Date</th>
@@ -51,3 +51,6 @@
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Fermer</button>
   </div>
 </ng-template>
+
+<p *ngIf="reservationsCovoiturageAffichage.length === 0" class="text-muted">Il n'y a pas de réservations de
+  covoiturage.</p>

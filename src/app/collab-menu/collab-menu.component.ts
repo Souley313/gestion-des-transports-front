@@ -10,17 +10,22 @@ import { Router } from '@angular/router';
 })
 export class CollabMenuComponent implements OnInit {
 
-  constructor(private authSrv: AuthService, private router: Router) { }
+  utilisateur: Collegue;
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   seDeconnecter() {
-    this.authSrv.seDeconnecter().subscribe(
+    this.authService.seDeconnecter().subscribe(
       () => this.router.navigate(['/auth'])
     );
   }
 
-  collegueConnexion = new Collegue({ nom: 'THIAM', prenom: 'Souleymane' }); // Création d'un mock de Collegue pour affichage
-
   ngOnInit(): void {
+    this.authService.collegueConnecteObs.subscribe(
+      value => this.utilisateur = value,
+      err => { },
+      () => { }
+    );
   }
 
 }
