@@ -21,7 +21,6 @@ export class CollabReserverVehiculeEntrepriseComponent implements OnInit {
   vehicules: VehiculeSansChauffeur[];
   vehiculeSelected: VehiculeSansChauffeur = new VehiculeSansChauffeur();
   dateValid = false;
-  chauffeur = false;
 
   constructor( private authSrv: AuthService, private dataService: DataService, private modalService: NgbModal) {
     this.dateDepartMin = formatDate( this.today, 'yyyy-MM-ddThh:mm', 'fr-FR', '+0200');
@@ -53,13 +52,9 @@ export class CollabReserverVehiculeEntrepriseComponent implements OnInit {
   }
 
   reserver(): void {
-    if ( this.chauffeur) {
-      this.reservation.conducteur = 'AVEC_CHAUFFEUR';
-    }
     this.dataService.postReservationEntreprise( this.reservation);
     this.reservation = new ReservationEntreprise();
     this.vehiculeSelected = new VehiculeSansChauffeur();
-    this.chauffeur = false;
     this.setMinDateRetour();
   }
 
@@ -68,7 +63,7 @@ export class CollabReserverVehiculeEntrepriseComponent implements OnInit {
       vehicules => this.vehicules = vehicules
      );
     this.authSrv.collegueConnecteObs.subscribe(
-      collegue => this.reservation.conducteur = collegue.matricule
+      collegue => this.reservation.reservant = collegue.matricule
     );
   }
 
