@@ -1,3 +1,4 @@
+import { Reservation } from './Reservation';
 import { DispoReservation } from './DispoReservation';
 
 export class VehiculeSansChauffeur {
@@ -12,29 +13,4 @@ export class VehiculeSansChauffeur {
     public disposReservation: DispoReservation[] = []
     ) {}
 
-  dateDepartValide( dateDepart: Date): boolean {
-    let reservation: any;
-    let valid = true;
-
-    for ( reservation in this.disposReservation) {
-      if ( dateDepart > reservation.dateDepart && dateDepart < reservation.dateArrivee) {
-        valid = false;
-        break;
-      }
-    }
-    return valid;
-  }
-
-  dateArriveeValide( dateArrivee: Date): boolean {
-    let reservation: any;
-    let valid = true;
-
-    for ( reservation in this.disposReservation) {
-      if ( reservation.dateDepart < dateArrivee && reservation.dateArrivee > dateArrivee) {
-        valid = false;
-        break;
-      }
-    }
-    return valid;
-  }
 }

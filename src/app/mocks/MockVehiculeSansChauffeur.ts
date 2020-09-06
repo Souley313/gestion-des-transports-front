@@ -12,7 +12,7 @@ export const mockVehiculeSansChauffeur1 = new VehiculeSansChauffeur(
 
 export const mockVehiculeSansChauffeur2 = new VehiculeSansChauffeur(
   2, 'PRO-000-02', 'Mercedes', 'Cla',
-  'https://s1.cdn.autoevolution.com/images/gallery/FIATMultipla-2416_1.jpg',
+  'https://i.ytimg.com/vi/HD-vr3x9raU/maxresdefault.jpg',
   'Coupé', 'EN_SERVICE', [
     new DispoReservation( 4, new Date( 2020, 11, 1, 8), new Date( 2020, 11, 9, 20), 'ACCEPTEE'),
     new DispoReservation( 5, new Date( 2020, 11, 10, 8), new Date( 2020, 11, 19, 20), 'ACCEPTEE'),

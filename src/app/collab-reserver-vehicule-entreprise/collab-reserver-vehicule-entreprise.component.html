@@ -7,135 +7,78 @@
       <div class="form-group row" [ngClass]="{'was-validated': etatDateHeureResa.touched}">
         <label for="dateHeure" class="col-md-5 col-form-label">Date / heure de réservation *</label>
         <div class="col-md-7">
-          <input type="datetime-local" min="{{ todayStr }}" class="form-control" #etatDateHeureResa="ngModel"
-            name="dateHeure" [(ngModel)]="reservation.dateDepart" required>
-          <div class="valid-feedback" *ngIf="dateDepartToString()"></div>
+          <input type="datetime-local" min="{{ dateDepartMin }}" class="form-control" #etatDateHeureResa="ngModel"
+            name="dateHeure" [(ngModel)]="reservation.dateDepart" (change)="datesValides()" required>
+          <div class="valid-feedback" *ngIf="setMinDateRetour()"></div>
           <div class="invalid-feedback">La date et l'heure sont obligatoires</div>
         </div>
       </div>
       <div class="form-group row" [ngClass]="{'was-validated': etatDateHeureRetour.touched}">
         <label for="dateHeure" class="col-md-5 col-form-label">Date / heure retour *</label>
         <div class="col-md-7">
-          <input type="datetime-local" min="{{ dateDepartStr }}" class="form-control" #etatDateHeureRetour="ngModel"
-            name="dateHeure" [(ngModel)]="reservation.dateArrivee" required>
+          <input type="datetime-local" min="{{ dateRetourMin }}" class="form-control" #etatDateHeureRetour="ngModel"
+            name="dateHeure" [(ngModel)]="reservation.dateArrivee" (change)="datesValides()" required>
           <div class="valid-feedback"></div>
           <div class="invalid-feedback">La date et l'heure sont obligatoires</div>
         </div>
       </div>
 
-      <!-- Carousel véhicules -->
-      <div id="carouselVehicule" class="carousel slide carousel-fade" data-ride="carousel"
-      *ngFor="let vehicule of vehicules">
-        <!--Indicators
-        <ol class="carousel-indicators">
-          <li data-target="#carouselVehicule" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselVehicule" data-slide-to="1"></li>
-          <li data-target="#carouselVehicule" data-slide-to="2"></li>
-        </ol>-->
-        <!--/.Indicators-->
-        <!--Slides-->
-        <div class="carousel-inner" role="listbox">
-          <div class="carousel-item active">
-            <div class="view">
-              <img class="d-block w-100" src={{ vehicule.photoUrl }} alt="Photo véhicule">
-              <div class="mask rgba-black-light"></div>
-            </div>
-            <div class="carousel-caption">
-              <h3 class="h3-responsive">{{ vehicule.immatriculation }}</h3>
-              <p>{{ vehicule.marque }} - {{ vehicule.marque }}</p><br/>
-              <p>{{ vehicule.categorie }}</p>
-            </div>
+      <div class="row">
+        <div *ngFor="let vehicule of vehicules" class="col-md-6 col-xl-4">
+          <div class="card mb-3" (click)="selectVehicule( vehicule); datesValides()">
+            <span
+              [ngClass]="{'border': vehicule.id != reservation.vehiculeId, 'border border-success' : vehicule.id == reservation.vehiculeId}">
+              <img src="{{ vehicule.photoUrl }}" alt="Photo" class="card-img-top">
+              <div class="text-center" style="margin-top: 10px;">
+                <h6>{{ vehicule.immatriculation }}</h6>
+                <p>{{ vehicule.marque }} - {{ vehicule.modele }} <br /> {{ vehicule.categorie }}</p>
+                <div class="text-danger" *ngIf="vehicule.statutVehicule != 'EN_SERVICE'">NON DISPONIBLE</div>
+              </div>
+            </span>
           </div>
-        <!--/.Slides-->
-        <!--Controls-->
-        <a class="carousel-control-prev" href="#carouselVehicule" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselVehicule" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-        <!--/.Controls-->
+        </div>
       </div>
-      <!--/.Carousel Wrapper-->
-      </div>
+
       <!-- Bouton réserver -->
       <div class="text-center" style="margin: 10px;">
-        <button class="btn btn-secondary" *ngIf="etatForm.invalid">Réserver</button>
-        <button class="btn btn-primary" *ngIf="etatForm.valid" data-toggle="modal"
-          data-target="#ModalConfirmation">Réserver</button>
+        <button class="btn btn-secondary" *ngIf="!dateValid">Déjà réservé à cette période</button>
+        <button class="btn btn-primary" *ngIf="dateValid" (click)="afficherConfirmation( mymodal)">Réserver</button>
       </div>
     </div>
   </div>
 </form>
 
-<!-- Modal Confirmation
-<div class="modal fade" id="ModalConfirmation" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h5 class="modal-title" id="ModalLongTitle">Confirmation de votre proposition</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <form>
-          <div class="form-group row">
-            <label for="depart" class="col-md-5 col-form-label">Adresse de départ</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control" #etatDepart="ngModel" name="depart" [(ngModel)]="annonce.depart"
-                readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="destination" class="col-md-5 col-form-label">Adresse de destination</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control" name="destination" [(ngModel)]="annonce.destination" readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="immatriculation" class="col-md-5 col-form-label">Immatriculation</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control" name="immatriculation"
-                [(ngModel)]="annonce.vehicule.immatriculation" readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="marque" class="col-md-5 col-form-label">Marque</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control" name="marque" [(ngModel)]="annonce.vehicule.marque" readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="modele" class="col-md-5 col-form-label">Modèle</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control" name="modele" [(ngModel)]="annonce.vehicule.modele" readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="places" class="col-md-5 col-form-label">Nombre de places disponibles</label>
-            <div class="col-md-2">
-              <input type="number" class="form-control" name="places" [(ngModel)]="annonce.vehicule.places" readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="dateHeure" class="col-md-5 col-form-label">Date / heure</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control" name="dateHeure"
-              [(ngModel)]="annonce.dateDepart" readonly>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-primary" (click)="publier()" data-dismiss="modal">Confirmer</button>
-      </div>
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Réservation d'un véhicule</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-6">Date / heure de réservation</div>
+      <div class="col-6">{{ reservation.dateDepart | date:'dd/MM/yyyy hh:mm' }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Date / heure retour</div>
+      <div class="col-6">{{ reservation.dateArrivee | date:'dd/MM/yyyy hh:mm' }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Immatriculation</div>
+      <div class="col-6">{{ vehiculeSelected.immatriculation }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Marque</div>
+      <div class="col-6">{{ vehiculeSelected.marque }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Modèle</div>
+      <div class="col-6">{{ vehiculeSelected.modele }}</div>
     </div>
   </div>
-</div>-->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Fermer</button>
+    <button type="button" class="btn btn-primary" (click)="reserver()" data-dismiss="modal">Confirmer</button>
+  </div>
+</ng-template>
