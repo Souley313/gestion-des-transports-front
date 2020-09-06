@@ -75,80 +75,53 @@
       </div>
       <div class="text-right">
         <button class="btn btn-secondary" *ngIf="etatForm.invalid">Publier</button>
-        <button class="btn btn-primary" *ngIf="etatForm.valid" data-toggle="modal"
-          data-target="#ModalConfirmation">Publier</button>
+          <button class="btn btn-primary" *ngIf="etatForm.valid" (click)="afficherConfirmation( mymodal)">Publier</button>
+        </div>
       </div>
     </div>
-  </div>
-</form>
+  </form>
 
-
-<!-- Modal Confirmation -->
-<div class="modal fade" id="ModalConfirmation" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h5 class="modal-title" id="ModalLongTitle">Confirmation de votre proposition</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  <!-- Modal Confirmation -->
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Confirmation de votre proposition</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-6">Adresse de départ</div>
+        <div class="col-6">{{ annonce.depart }}</div>
       </div>
-
-      <div class="modal-body">
-        <form>
-          <div class="form-group row">
-            <label for="depart" class="col-md-5 col-form-label">Adresse de départ</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control" #etatDepart="ngModel" name="depart" [(ngModel)]="annonce.depart"
-                readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="destination" class="col-md-5 col-form-label">Adresse de destination</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control" name="destination" [(ngModel)]="annonce.destination" readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="immatriculation" class="col-md-5 col-form-label">Immatriculation</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control" name="immatriculation"
-                [(ngModel)]="annonce.vehicule.immatriculation" readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="marque" class="col-md-5 col-form-label">Marque</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control" name="marque" [(ngModel)]="annonce.vehicule.marque" readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="modele" class="col-md-5 col-form-label">Modèle</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control" name="modele" [(ngModel)]="annonce.vehicule.modele" readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="places" class="col-md-5 col-form-label">Nombre de places disponibles</label>
-            <div class="col-md-2">
-              <input type="number" class="form-control" name="places" [(ngModel)]="annonce.vehicule.places" readonly>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="dateHeure" class="col-md-5 col-form-label">Date / heure</label>
-            <div class="col-md-7">
-              <input type="text" class="form-control" name="dateHeure"
-              [(ngModel)]="annonce.dateDepart" readonly>
-            </div>
-          </div>
-        </form>
+      <div class="row">
+        <div class="col-6">Adresse de destination</div>
+        <div class="col-6">{{ annonce.destination }}</div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-primary" (click)="publier()" data-dismiss="modal">Confirmer</button>
+      <div class="row">
+        <div class="col-6">Immatriculation</div>
+        <div class="col-6">{{ annonce.vehicule.immatriculation }}</div>
+      </div>
+      <div class="row">
+        <div class="col-6">Marque</div>
+        <div class="col-6">{{ annonce.vehicule.marque }}</div>
+      </div>
+      <div class="row">
+        <div class="col-6">Modèle</div>
+        <div class="col-6">{{ annonce.vehicule.modele }}</div>
       </div>
     </div>
-  </div>
-</div>
+      <div class="row">
+        <div class="col-6">Date / heure de départ</div>
+        <div class="col-6">{{ annonce.dateDepart | date:'dd/MM/yyyy hh:mm' }}</div>
+      </div>
+      <div class="row">
+        <div class="col-6">Date / heure retour</div>
+        <div class="col-6">{{ annonce.vehicule.places }}</div>
+      </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Annuler</button>
+      <button type="button" class="btn btn-primary" (click)="publier(); modal.close('Save click')"
+      data-dismiss="modal">Confirmer</button>
+    </div>
+  </ng-template>
