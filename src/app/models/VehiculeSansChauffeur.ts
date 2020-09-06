@@ -10,7 +10,7 @@ export class VehiculeSansChauffeur {
     public photoUrl: string = '',
     public categorie: string = '',
     public statutVehicule: string = '',
-    public disposReservation: DispoReservation[] = []
+    public dispoReservation: DispoReservation[] = []
     ) {}
 
 }

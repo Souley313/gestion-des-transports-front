@@ -1,11 +1,9 @@
-import { mockVehiculesSansChauffeur } from './../mocks/MockVehiculeSansChauffeur';
 import { VehiculeSansChauffeur } from './../models/VehiculeSansChauffeur';
 import { ReservationSansChauffeur } from './../models/ReservationSansChauffeur';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../auth/auth.service';
 import { formatDate } from '@angular/common';
-import { timestamp } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -33,13 +31,8 @@ export class CollabReserverVehiculeEntrepriseComponent implements OnInit {
   }
 
   datesValides(): void {
-    console.log(JSON.stringify(this.vehiculeSelected))
-    console.log(JSON.stringify(this.reservation))
-    console.log(JSON.stringify(this.vehicules))
-
-
     this.dateValid = this.vehicules.includes( this.vehiculeSelected) &&
-      !this.vehiculeSelected.disposReservation.filter( reserv => reserv.statutReservation === 'ACCEPTEE')
+      !this.vehiculeSelected.dispoReservation.filter( reserv => reserv.statutReservation === 'ACCEPTEE')
       .some( datesInvalides =>
         ( new Date( this.reservation.dateDepart).getTime() > new Date( datesInvalides.dateDepart).getTime()
         && new Date( this.reservation.dateDepart).getTime() < new Date( datesInvalides.dateArrivee).getTime())
@@ -60,6 +53,9 @@ export class CollabReserverVehiculeEntrepriseComponent implements OnInit {
 
   reserver(): void {
     this.dataService.postReservationSansChauffeur( this.reservation);
+    this.reservation = new ReservationSansChauffeur();
+    this.vehiculeSelected = new VehiculeSansChauffeur();
+    this.setMinDateRetour();
   }
 
   ngOnInit(): void {

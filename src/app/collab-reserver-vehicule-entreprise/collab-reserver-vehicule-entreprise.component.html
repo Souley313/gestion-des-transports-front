@@ -78,7 +78,8 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Fermer</button>
-    <button type="button" class="btn btn-primary" (click)="reserver()" data-dismiss="modal">Confirmer</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Annuler</button>
+    <button type="button" class="btn btn-primary" (click)="reserver(); modal.close('Save click')"
+    data-dismiss="modal">Confirmer</button>
   </div>
 </ng-template>

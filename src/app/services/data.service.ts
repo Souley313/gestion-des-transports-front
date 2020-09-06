@@ -22,7 +22,7 @@ export class DataService {
   creerAnnonceCovoit( annonce: AnnonceCovoiturage): void {
     console.log( 'INFO : Création d\'une annonce covoiturage \n');
     const request: string = this.URL_BACKEND + 'reservations-covoiturage/';
-    this.http.post<JSON>(request, JSON.stringify(annonce));
+    this.http.post<AnnonceCovoiturage>( request, annonce);
   }
 
   getAllReservationsCovoiturageAffichageByPassager(): Observable<ReservationCovoiturageAffichage[]> {
@@ -46,7 +46,9 @@ export class DataService {
   postReservationSansChauffeur( reservation: ReservationSansChauffeur): void {
     console.log( 'INFO : Création d\'une réserrvation sans chauffeur \n' + JSON.stringify( reservation));
     const request: string = this.URL_BACKEND + 'reservation-entreprise/';
-    this.http.post<JSON>( request, JSON.stringify( reservation));
+    this.http.post<ReservationSansChauffeur>( request, reservation).subscribe(
+      reserv => console.log( reserv)
+    );
   }
 
   getAllVehiculesEntreprise(): Observable<VehiculeEntrepriseInfosGenerales[]> {
