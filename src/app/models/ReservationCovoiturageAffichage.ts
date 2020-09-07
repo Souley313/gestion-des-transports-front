@@ -5,6 +5,7 @@ export class ReservationCovoiturageAffichage {
     public infosDestination?: string,
     public statutReservationCovoiturage?: string,
     public infosVehiculeParticulier?: string,
-    public infosConducteur?: string
+    public infosConducteur?: string,
+    public id?: number
   ) { }
 }

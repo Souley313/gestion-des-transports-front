@@ -11,7 +11,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class CollabReservationsComponent implements OnInit, OnDestroy {
   showVehicules = false;
-  showCovoiturages = false;
+  showCovoiturages = true;
   showCourses = false;
   reservationsCovoiturageHistoriqueAffichage: ReservationCovoiturageAffichage[];
   reservationsCovoiturageEnCoursAffichage: ReservationCovoiturageAffichage[];
@@ -39,8 +39,14 @@ export class CollabReservationsComponent implements OnInit, OnDestroy {
 
     this.dataService.getAllReservationsCovoiturageAffichageByPassager().subscribe(
       value => {
-        this.reservationsCovoiturageHistoriqueAffichage = value.filter(reservation => new Date(reservation.dateDepart).getTime() < Date.now());
-        this.reservationsCovoiturageEnCoursAffichage = value.filter(reservation => new Date(reservation.dateDepart).getTime() >= Date.now());
+        this.reservationsCovoiturageHistoriqueAffichage = value.filter(
+          reservation => new Date(reservation.dateDepart).getTime() < Date.now() ||
+            reservation.statutReservationCovoiturage === 'ANNULEE'
+        );
+        this.reservationsCovoiturageEnCoursAffichage = value.filter(
+          reservation => new Date(reservation.dateDepart).getTime() >= Date.now() &&
+            reservation.statutReservationCovoiturage !== 'ANNULEE'
+        );
       },
       err => { },
       () => { }
