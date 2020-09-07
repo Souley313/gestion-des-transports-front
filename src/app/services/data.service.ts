@@ -61,6 +61,9 @@ export class DataService {
     return this.http.get<ChauffeurDto[]>(this.URL_BACKEND + 'administrateur/chauffeurs');
   }
 
+  getAllAnnonces(): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(this.URL_BACKEND + 'reservations-covoiturage/conducteur');
+  }
 
   getAllReservationsVehiculeAffichageByPassager(): Observable<ReservationVehiculeAffichage[]> {
     return this.http.get<ReservationVehiculeAffichage[]>(this.URL_BACKEND + 'reservations-vehicules/me');

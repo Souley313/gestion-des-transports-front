@@ -32,13 +32,6 @@ export class AdminChauffeursComponent implements OnInit {
   openModal(modal) {
     this.modalService.open(modal);
   }
-   creerChauffeur(){
-    this.dataSrv.createChauffeur(this.ident).subscribe(col => {
-       this.tabChauffeur.push(col);
-      this.ajout = true;
-    },
-      err => this.message = ` Erreur lors de l'ajout du collegue : ${err.error}`);
-  }
 
 
     createForm() {
