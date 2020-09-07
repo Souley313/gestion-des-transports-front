@@ -1,3 +1,13 @@
+<div *ngIf="isSubmitted && !isClosed" class="mb-3">
+  <ngb-alert [type]="'success'" (close)="close()">La réservation a bien été
+    enregistrée</ngb-alert>
+</div>
+<div *ngIf="hasError && !isClosed" class="mb-3">
+  <ngb-alert [type]="'danger'" (close)="close()">{{errorAnnulation.error.status}} : {{errorAnnulation.error.error}}
+    {{errorAnnulation.message}}
+  </ngb-alert>
+</div>
+
 <p class="card-text">Mes covoiturages</p>
 <table class="table table-striped w-auto" *ngIf="reservationsCovoiturageAffichage.length != 0">
   <thead>
@@ -5,7 +15,7 @@
       <th>Date</th>
       <th>Départ</th>
       <th>Destination</th>
-      <th></th>
+      <th *ngIf="displayStatut">Statut</th>
     </tr>
   </thead>
   <tbody>
@@ -13,7 +23,12 @@
       <td>{{reservation.dateDepart | date:'dd/MM/yyyy hh:mm'}}</td>
       <td>{{reservation.infosDepart}}</td>
       <td>{{reservation.infosDestination}}</td>
-      <td><button class="btn btn-secondary" (click)="afficherDetails(reservation, mymodal)">Détails</button></td>
+      <td *ngIf="displayStatut">{{reservation.statutReservationCovoiturage}}</td>
+      <td>
+        <button class="btn btn-secondary" (click)="afficherDetails(reservation, mymodal)">Détails</button>
+        <button *ngIf="!displayStatut" class="btn btn-danger ml-2"
+          (click)="confirmerAnnulation(reservation, modalAnnuler)">Annuler</button>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -49,6 +64,24 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Fermer</button>
+  </div>
+</ng-template>
+
+<ng-template #modalAnnuler let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Annuler la réservation</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Voulez-vous annuler la réservation ?</p>
+    <p>Un email vous sera envoyé.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary mr-2" (click)="modal.close('Save click')">Retour</button>
+    <button type="button" class="btn btn-primary"
+      (click)="modal.close('Save click'); annulerReservation()">Confirmer</button>
   </div>
 </ng-template>
 
