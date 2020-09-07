@@ -14,30 +14,33 @@
     </li>
   </ul>
 
-  <div class="card-body" *ngIf="showCovoiturages || showCourses || showVehicules">
-    <div class="card card-body">
-      <div *ngIf="showCovoiturages">
-        <h4>Réservations covoiturages</h4>
-        <h5 class="card-subtitle mb-2">En cours</h5>
-        <app-collab-reservation-table [reservationsCovoiturageAffichage]='reservationsCovoiturageEnCoursAffichage'
-          [displayStatut]='false'>
-        </app-collab-reservation-table>
-        <h5 class="card-subtitle mb-2 text-muted mt-3">Historique</h5>
-        <app-collab-reservation-table [reservationsCovoiturageAffichage]='reservationsCovoiturageHistoriqueAffichage'
-          [displayStatut]='true'>
-        </app-collab-reservation-table>
-        <a routerLink="/collaborateur/annonces/creer" class="btn btn-primary my-4">Publier une annonce de
-          covoiturage</a>
+  <div class="card-body" *ngIf="showCovoiturages || showVehicules">
+    <div *ngIf="showCovoiturages" [ngClass]="{'mb-4': showVehicules}">
+      <h4>Réservations covoiturages</h4>
+      <h5 class="card-subtitle mb-2">En cours</h5>
+      <app-collab-reservation-table [reservationsCovoiturageAffichage]='reservationsCovoiturageEnCoursAffichage'
+        [displayStatut]='false'>
+      </app-collab-reservation-table>
+      <h5 class="card-subtitle mb-2 text-muted mt-3">Historique</h5>
+      <app-collab-reservation-table [reservationsCovoiturageAffichage]='reservationsCovoiturageHistoriqueAffichage'
+        [displayStatut]='true'>
+      </app-collab-reservation-table>
+      <div class="text-right">
+        <a routerLink="/collaborateur/annonces/creer" class="btn btn-primary my-4">
+          Publier une annonce de covoiturage</a>
       </div>
-      <div *ngIf="showVehicules">
-        <h4>Réservations véhicules de société</h4>
-        <h5 class="card-subtitle mb-2">En cours</h5>
-        <app-collab-reservation-vehicule-table [reservationsEntreprise]='reservationsEntrepriseEnCoursAffichage'>
-        </app-collab-reservation-vehicule-table>
-        <h5 class="card-subtitle mb-2 text-muted mt-3">Historique</h5>
-        <app-collab-reservation-vehicule-table [reservationsEntreprise]='reservationsEntrepriseHistoriqueAffichage'>
-        </app-collab-reservation-vehicule-table>
-        <a routerLink="/collaborateur/reservations/creer" class="btn btn-primary my-4">Réserver un véhicule</a>
+    </div>
+    <div *ngIf="showVehicules">
+      <h4>Réservations véhicules de société</h4>
+      <h5 class="card-subtitle mb-2">En cours</h5>
+      <app-collab-reservation-vehicule-table [reservationsEntreprise]='reservationsEntrepriseEnCoursAffichage'>
+      </app-collab-reservation-vehicule-table>
+      <h5 class="card-subtitle mb-2 text-muted mt-3">Historique</h5>
+      <app-collab-reservation-vehicule-table [reservationsEntreprise]='reservationsEntrepriseHistoriqueAffichage'>
+      </app-collab-reservation-vehicule-table>
+      <div class="text-right">
+        <a routerLink="/collaborateur/reservations/creer" class="btn btn-primary my-4">
+          Réserver un véhicule</a>
       </div>
     </div>
   </div>
