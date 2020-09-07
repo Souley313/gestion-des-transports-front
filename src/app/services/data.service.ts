@@ -1,3 +1,4 @@
+import { ReservationEntrepriseAffichage } from './../models/ReservationEntrepriseAffichage';
 import { ReservationEntreprise } from '../models/ReservationEntreprise';
 import { VehiculeSansChauffeur } from '../models/VehiculeSansChauffeur';
 import { VehiculeEntrepriseInfosGenerales } from './../models/VehiculeEntrepriseInfosGenerales';
@@ -9,7 +10,6 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { ChauffeurDto } from '../models/ChauffeurDto';
-import { ReservationVehiculeAffichage } from '../models/ReservationVehiculeAffichage';
 import { AnnonceDto } from '../models/AnnonceDto';
 
 
@@ -64,15 +64,16 @@ export class DataService {
     return this.http.patch<any>(
       this.URL_BACKEND + 'administrateur/chauffeurs/${matricule}', {
       withCredentials: true
-    })
+    });
   }
 
   getAllAnnonces(): Observable<AnnonceDto[]> {
     return this.http.get<AnnonceDto[]>(this.URL_BACKEND + 'reservations-covoiturage/conducteur');
   }
 
-  getAllReservationsVehiculeAffichageByPassager(): Observable<ReservationVehiculeAffichage[]> {
-    return this.http.get<ReservationVehiculeAffichage[]>(this.URL_BACKEND + 'reservations-vehicules/me');
+  getAllReservationsEntrepriseAffichageByReservant( matricule: string): Observable<ReservationEntrepriseAffichage[]> {
+    const request =  this.URL_BACKEND + 'reservation-entreprise/' + matricule;
+    return this.http.get<ReservationEntrepriseAffichage[]>( request);
   }
 }
 
