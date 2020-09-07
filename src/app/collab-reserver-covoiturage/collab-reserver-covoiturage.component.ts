@@ -14,6 +14,9 @@ export class CollabReserverCovoiturageComponent implements OnInit {
   rechercheReservationCovoiturage = new AnnonceCovoiturageAffichage();
   annoncesCovoiturageAffichage: AnnonceCovoiturageAffichage[];
   resultatsRecherche: AnnonceCovoiturageAffichage[];
+  filtreDate: AnnonceCovoiturageAffichage[] = [];
+  filtreDepart: AnnonceCovoiturageAffichage[] = [];
+  filtreDestination: AnnonceCovoiturageAffichage[] = [];
   matricule: string;
   jstoday: string;
   reservationModal = new AnnonceCovoiturageAffichage();
@@ -31,31 +34,44 @@ export class CollabReserverCovoiturageComponent implements OnInit {
     this.afficherAnnonces = this.rechercheReservationCovoiturage.dateDepart != null ||
       (this.rechercheReservationCovoiturage.infosDepart != null && this.rechercheReservationCovoiturage.infosDepart !== '') ||
       (this.rechercheReservationCovoiturage.infosDestination != null && this.rechercheReservationCovoiturage.infosDestination !== '');
+    this.updateResultatsRecherche();
+  }
+
+  replaceEmptyArray(reservations: AnnonceCovoiturageAffichage[], champ: any): AnnonceCovoiturageAffichage[] {
+    return (champ == null ? this.annoncesCovoiturageAffichage : reservations);
+  }
+
+  updateResultatsRecherche(): void {
+    this.resultatsRecherche = this.replaceEmptyArray(this.filtreDate, this.rechercheReservationCovoiturage.dateDepart)
+      .filter(reservation => this.replaceEmptyArray(this.filtreDepart, this.rechercheReservationCovoiturage.infosDepart).includes(reservation) && this.replaceEmptyArray(this.filtreDestination, this.rechercheReservationCovoiturage.infosDestination).includes(reservation));
   }
 
   updateAffichageDate(): void {
-    this.restartFilter();
     if (this.rechercheReservationCovoiturage.dateDepart != null) {
-      this.resultatsRecherche = this.resultatsRecherche
+      this.filtreDate = this.annoncesCovoiturageAffichage
         .filter(annonce => new Date(annonce.dateDepart).getTime() === new Date(this.rechercheReservationCovoiturage.dateDepart).getTime());
+    } else {
+      this.filtreDate = this.annoncesCovoiturageAffichage;
     }
     this.updateAfficherAnnonces();
   }
 
   updateAffichageDepart(): void {
-    this.restartFilter();
     if (this.rechercheReservationCovoiturage.infosDepart != null && this.rechercheReservationCovoiturage.infosDepart !== '') {
-      this.resultatsRecherche = this.resultatsRecherche
+      this.filtreDepart = this.annoncesCovoiturageAffichage
         .filter(annonce => annonce.infosDepart.toLowerCase().startsWith(this.rechercheReservationCovoiturage.infosDepart.toLowerCase()));
+    } else {
+      this.filtreDepart = this.annoncesCovoiturageAffichage;
     }
     this.updateAfficherAnnonces();
   }
 
   updateAffichageDestination(): void {
-    this.restartFilter();
     if (this.rechercheReservationCovoiturage.infosDestination != null && this.rechercheReservationCovoiturage.infosDestination !== '') {
-      this.resultatsRecherche = this.resultatsRecherche
+      this.filtreDestination = this.annoncesCovoiturageAffichage
         .filter(annonce => annonce.infosDestination.toLowerCase().startsWith(this.rechercheReservationCovoiturage.infosDestination.toLowerCase()));
+    } else {
+      this.filtreDestination = this.annoncesCovoiturageAffichage;
     }
     this.updateAfficherAnnonces();
   }
@@ -99,6 +115,7 @@ export class CollabReserverCovoiturageComponent implements OnInit {
     this.dataService.getAllAnnoncesCovoiturageAffichage().subscribe(
       value => {
         this.annoncesCovoiturageAffichage = value.filter(annonce => (annonce.statutReservationCovoiturage !== 'ANNULEE') && (annonce.nbPlacesDisponibles > 0));
+        this.restartFilter();
       },
       err => { },
       () => { }

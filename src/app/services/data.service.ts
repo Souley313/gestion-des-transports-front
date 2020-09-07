@@ -1,4 +1,4 @@
-import { ReservationSansChauffeur } from './../models/ReservationSansChauffeur';
+import { ReservationEntreprise } from '../models/ReservationEntreprise';
 import { VehiculeSansChauffeur } from '../models/VehiculeSansChauffeur';
 import { VehiculeEntrepriseInfosGenerales } from './../models/VehiculeEntrepriseInfosGenerales';
 import { AnnonceCovoiturageAffichage } from './../models/AnnonceCovoiturageAffichage';
@@ -23,7 +23,6 @@ export class DataService {
   constructor( private http: HttpClient) {}
 
   creerAnnonceCovoit( annonce: AnnonceCovoiturage): void {
-    console.log( 'INFO : Création d\'une annonce covoiturage \n');
     const request: string = this.URL_BACKEND + 'reservations-covoiturage/';
     this.http.post<AnnonceCovoiturage>( request, annonce);
   }
@@ -41,17 +40,13 @@ export class DataService {
   }
 
   getVehiculesEntreprise(): Observable<VehiculeSansChauffeur[]> {
-    console.log( 'INFO : Récupération des véhicules de société');
     const request: string = this.URL_BACKEND + 'reservation-entreprise/vehicules/';
     return this.http.get<VehiculeSansChauffeur[]>( request);
   }
 
-  postReservationSansChauffeur( reservation: ReservationSansChauffeur): void {
-    console.log( 'INFO : Création d\'une réserrvation sans chauffeur \n' + JSON.stringify( reservation));
+  postReservationEntreprise( reservation: ReservationEntreprise): void {
     const request: string = this.URL_BACKEND + 'reservation-entreprise/';
-    this.http.post<ReservationSansChauffeur>( request, reservation).subscribe(
-      reserv => console.log( reserv)
-    );
+    this.http.post<ReservationEntreprise>( request, reservation);
   }
 
   getAllVehiculesEntreprise(): Observable<VehiculeEntrepriseInfosGenerales[]> {
