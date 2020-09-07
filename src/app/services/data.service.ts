@@ -1,3 +1,4 @@
+import { AnnonceCovoiturageUpdateStatutReservation } from './../models/AnnonceCovoiturageUpdateStatutReservation';
 import { ReservationEntreprise } from '../models/ReservationEntreprise';
 import { VehiculeSansChauffeur } from '../models/VehiculeSansChauffeur';
 import { VehiculeEntrepriseInfosGenerales } from './../models/VehiculeEntrepriseInfosGenerales';
@@ -23,9 +24,10 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  creerAnnonceCovoit(annonce: AnnonceCovoiturage): void {
-    const request: string = this.URL_BACKEND + 'reservations-covoiturage/';
-    this.http.post<AnnonceCovoiturage>(request, annonce);
+  creerAnnonceCovoit(annonce: AnnonceCovoiturage): Observable<AnnonceCovoiturageAffichage> {
+    const request: string = this.URL_BACKEND + 'reservations-covoiturage';
+
+    return this.http.post<AnnonceCovoiturageAffichage>(request, annonce);
   }
 
   getAllReservationsCovoiturageAffichageByPassager(): Observable<ReservationCovoiturageAffichage[]> {
@@ -79,6 +81,13 @@ export class DataService {
   annulerReservation(updateStatut: ReservationCovoiturageUpdateStatutReservation): Observable<ReservationCovoiturageUpdateStatutReservation> {
     return this.http.patch<ReservationCovoiturageUpdateStatutReservation>(
       this.URL_BACKEND + 'reservations-covoiturage',
+      updateStatut
+    );
+  }
+
+  annulerAnnonce(updateStatut: AnnonceCovoiturageUpdateStatutReservation): Observable<AnnonceCovoiturageUpdateStatutReservation> {
+    return this.http.patch<AnnonceCovoiturageUpdateStatutReservation>(
+      this.URL_BACKEND + 'reservations-covoiturage/conducteur',
       updateStatut
     );
   }
