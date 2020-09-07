@@ -11,7 +11,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class CollabReservationsComponent implements OnInit, OnDestroy {
   showVehicules = false;
-  showCovoiturages = true;
+  showCovoiturages = false;
   showCourses = false;
   reservationsCovoiturageHistoriqueAffichage: ReservationCovoiturageAffichage[];
   reservationsCovoiturageEnCoursAffichage: ReservationCovoiturageAffichage[];
