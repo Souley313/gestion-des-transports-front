@@ -9,6 +9,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { ChauffeurDto } from '../models/ChauffeurDto';
+import { AnnonceDto } from '../models/AnnonceDto';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +59,17 @@ export class DataService {
 
   getAllChauffeurs(): Observable<ChauffeurDto[]> {
     return this.http.get<ChauffeurDto[]>(this.URL_BACKEND + 'administrateur/chauffeurs');
+  }
+
+  createChauffeur(matricule: any): Observable<string> {
+    return this.http.patch<any>(
+      this.URL_BACKEND + 'administrateur/chauffeurs/${matricule}', {
+      withCredentials: true
+    })
+  }
+
+  getAllAnnonces(): Observable<AnnonceDto[]> {
+    return this.http.get<AnnonceDto[]>(this.URL_BACKEND + 'reservations-covoiturage/conducteur');
+
   }
 }

@@ -4,6 +4,7 @@
   </div>
 </div>
 
+<div class="card-body">
 <form>
       <div class="row align-items-center mt-3">
         <!--BARRE RECHERCHE MATRICULE-->
@@ -32,70 +33,74 @@
           <input type="search" class="form-control" name="searchFirstname" [(ngModel)]="prenom" placeholder="Recherche par prénom">
         </div>
         <div class="col-md-5">
-          <button type="button" class="btn btn-primary" (click)="openModal(content)">Ajouter un chauffeur</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Ajouter un chauffeur</button>
+
         </div>
       </div>
 </form>
+</div>
 
-<div class="card-deck">
-  <div class="card my-3 mx-1 p-1" style="max-width: 540px;" *ngFor="let chauffeur of chauffeurs | filter:nom | filter:prenom | filter:matricule">
-    <div class="card-header">
-          <h4 class="my-0 font-weight-normal">{{chauffeur.nom}} {{chauffeur.prenom}}</h4>
-    </div>
-     <div class="row no-gutters">
-          <div class="col-md-4 my-3 ml-1">
-            <img src="{{chauffeur.photoUrl}}" class="img-fluid z-depth-1 rounded-circle" alt="No image">
-          </div>
-          <div class="col-md-7">
-            <div class="card-body">
-              <div class="card-text">
+
+<div class="row">
+  <div *ngFor="let chauffeur of chauffeurs  | filter:nom | filter:prenom | filter:matricule" class="col-md-6 col-xl-4">
+    <div class="card mb-3">
+      <img src="{{chauffeur.photoUrl}}" alt="Photo de {{chauffeur.prenom}} {{chauffeur.nom}}" class="card-img-top"
+        height="200px">
+      <div class="card-body">
+        <div class="card-text">
                 <dl class="row">
-                  <dt class="col-sm-4">Matricule</dt>
-                  <dd class="col-sm-8">{{chauffeur.matricule}}</dd>
-                  <dt class="col-sm-4">Nom </dt>
-                  <dd class="col-sm-8">{{chauffeur.nom}}</dd>
-                  <dt class="col-sm-4">Prenom</dt>
-                  <dd class="col-sm-8">{{chauffeur.prenom}}</dd>
-                  <dt class="col-sm-4">Permis</dt>
-                  <dd class="col-sm-8">{{chauffeur.categoriePermis}}</dd>
-                  <dt class="col-sm-4">Email</dt>
-                  <dd class="col-sm-8">{{chauffeur.email}}</dd>
-                  <dt class="col-sm-4">Téléphone</dt>
-                  <dd class="col-sm-8">{{chauffeur.telephone}}</dd>
+                  <dt class="col-sm-5">Matricule</dt>
+                  <dd class="col-sm-7">{{chauffeur.matricule}}</dd>
+                  <dt class="col-sm-5">Nom </dt>
+                  <dd class="col-sm-7">{{chauffeur.nom}}</dd>
+                  <dt class="col-sm-5">Prenom</dt>
+                  <dd class="col-sm-7">{{chauffeur.prenom}}</dd>
+                  <dt class="col-sm-5">Permis</dt>
+                  <dd class="col-sm-7">{{chauffeur.categoriePermis}}</dd>
+                  <dt class="col-sm-5">Email</dt>
+                  <dd class="col-sm-7">{{chauffeur.email}}</dd>
+                  <dt class="col-sm-5">Téléphone</dt>
+                  <dd class="col-sm-7">{{chauffeur.telephone}}</dd>
                 </dl>
               </div>
-            </div>
-          </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!--FENETRE MODALE: AJOUT CHAUFFEUR-->
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title w-100" id="myModalLabel">Nouveau chauffeur</h4>
-  </div>
-  <div class="modal-body">
-    <div class="row align-items-center mt-3">
-      <!--BARRE RECHERCHE MATRICULE-->
-      <div class="col-md-3">
-
-        <label class="ml-2">Matricule </label>
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nouveau Chauffeur</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-
-      <div class="col-md-9">
-        <form>
-          <input type="search" class="form-control" name="searchName"
-            placeholder="Recherche par matricule">
+      <div class="modal-body">
+        <form [formGroup]="registerForm">
+          <div class="form-group">
+            <label class="center-block">Maricule:
+              <input type="search" class="form-control" formControlName="matricule"
+                placeholder="Recherche par matricule">
+            </label>
+          </div>
+          <div *ngIf="registerForm.controls['matricule'].invalid && (registerForm.controls['matricule'].dirty || registerForm.controls['matricule'].touched)" class="alert alert-danger">
+            <div *ngIf="registerForm.controls['matricule'].errors.required">
+            Matricule is required.
+            </div>
+           </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="submit" (click)="creerChauffeur()" class="btn btn-primary">Ajouter</button>
+                
+              </div>
         </form>
       </div>
+      <div class="modal-footer">
+        
+      </div>
     </div>
-
   </div>
-  <div class="modal-footer">
-    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
-      (click)="modal.dismiss()" mdbWavesEffect>Annuler</button>
-    <button type="button" name="id" mdbBtn color="secondary" class="waves-light" aria-label="Close" mdbWavesEffect>Ajouter</button>
-  </div>
-</ng-template>
+</div>
