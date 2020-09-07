@@ -12,8 +12,21 @@ export class CollabAnnoncesComponent implements OnInit {
 
   annoncesEnCours: AnnonceDto [];
   annoncesHistorique: AnnonceDto [];
+  config: any;
+  collection = { count: 30, data: [] };
 
-  constructor(private postSrv: DataService ) { }
+  constructor(private postSrv: DataService ) { 
+      this.config = {
+      itemsPerPage: 5,
+      currentPage: 1,
+      totalItems: this.collection.count,
+    };
+  }
+
+  pageChanged(event){
+    this.config.currentPage = event;
+  }
+
 
   ngOnInit(): void {
     this.postSrv.getAllAnnonces().subscribe(
@@ -25,5 +38,4 @@ export class CollabAnnoncesComponent implements OnInit {
       () => { }
     );
   }
-
 }
