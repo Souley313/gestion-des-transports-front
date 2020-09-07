@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class CollabReserverComponent implements OnInit {
   showReserverVehicule = false;
   showReserverCovoiturage = true;
-  showReserverChauffeur = false;
   constructor() { }
 
   toggleVehicules() {
@@ -16,9 +15,6 @@ export class CollabReserverComponent implements OnInit {
   }
   toggleCovoiturages() {
     this.showReserverCovoiturage = !this.showReserverCovoiturage;
-  }
-  toggleCourses() {
-    this.showReserverChauffeur = !this.showReserverChauffeur;
   }
 
   ngOnInit(): void {

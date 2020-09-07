@@ -9,17 +9,18 @@
         <label class="btn btn-primary" [ngClass]="{'active': showReserverVehicule}">
           <input (click)="toggleVehicules()" type="checkbox" autocomplete="off">Véhicules de service
         </label>
-        <label class="btn btn-primary" [ngClass]="{'active': showReserverChauffeur}">
-          <input (click)="toggleCourses()" type="checkbox" autocomplete="off">Courses avec chauffeur
-        </label>
       </div>
     </li>
   </ul>
-  <div class="card-body">
-    <div *ngIf="showReserverCovoiturage">
+  <div *ngIf="showReserverCovoiturage">
+    <div class="card-body">
       <app-collab-reserver-covoiturage></app-collab-reserver-covoiturage>
     </div>
-    <div *ngIf="showReserverVehicule">
+  </div>
+  <div *ngIf="showReserverVehicule">
+    <div class="card-body">
+      <h5>Réserver un véhicule</h5>
+      <app-collab-reserver-vehicule-entreprise></app-collab-reserver-vehicule-entreprise>
     </div>
   </div>
 </div>

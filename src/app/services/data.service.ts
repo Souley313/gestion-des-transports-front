@@ -1,3 +1,5 @@
+import { ReservationEntreprise } from '../models/ReservationEntreprise';
+import { VehiculeSansChauffeur } from '../models/VehiculeSansChauffeur';
 import { VehiculeEntrepriseInfosGenerales } from './../models/VehiculeEntrepriseInfosGenerales';
 import { AnnonceCovoiturageAffichage } from './../models/AnnonceCovoiturageAffichage';
 import { AnnonceCovoiturage } from './../models/AnnonceCovoiturage';
@@ -7,7 +9,13 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { ChauffeurDto } from '../models/ChauffeurDto';
+<<<<<<< HEAD
 import { ReservationVehiculeAffichage } from '../models/ReservationVehiculeAffichage';
+=======
+import { AnnonceDto } from '../models/AnnonceDto';
+
+
+>>>>>>> 3e949d865d895399cb5306949cda1d24c3bce5cd
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +24,11 @@ export class DataService {
 
   URL_BACKEND: string = environment.baseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor( private http: HttpClient) {}
 
-  creerAnnonceCovoit(annonce: AnnonceCovoiturage): void {
-    console.log('INFO : Création d\'une annonce covoiturage \n' + JSON.stringify(annonce));
+  creerAnnonceCovoit( annonce: AnnonceCovoiturage): void {
     const request: string = this.URL_BACKEND + 'reservations-covoiturage/';
-    this.http.post<JSON>(request, JSON.stringify(annonce));
+    this.http.post<AnnonceCovoiturage>( request, annonce);
   }
 
   getAllReservationsCovoiturageAffichageByPassager(): Observable<ReservationCovoiturageAffichage[]> {
@@ -36,6 +43,16 @@ export class DataService {
     return this.http.put<AnnonceCovoiturageAffichage>(this.URL_BACKEND + 'reservations-covoiturage', annonce);
   }
 
+  getVehiculesEntreprise(): Observable<VehiculeSansChauffeur[]> {
+    const request: string = this.URL_BACKEND + 'reservation-entreprise/vehicules/';
+    return this.http.get<VehiculeSansChauffeur[]>( request);
+  }
+
+  postReservationEntreprise( reservation: ReservationEntreprise): void {
+    const request: string = this.URL_BACKEND + 'reservation-entreprise/';
+    this.http.post<ReservationEntreprise>( request, reservation);
+  }
+
   getAllVehiculesEntreprise(): Observable<VehiculeEntrepriseInfosGenerales[]> {
     return this.http.get<VehiculeEntrepriseInfosGenerales[]>(this.URL_BACKEND + 'vehicules-entreprise');
   }
@@ -48,7 +65,9 @@ export class DataService {
     return this.http.get<ChauffeurDto[]>(this.URL_BACKEND + 'administrateur/chauffeurs');
   }
 
+
   getAllReservationsVehiculeAffichageByPassager(): Observable<ReservationVehiculeAffichage[]> {
     return this.http.get<ReservationVehiculeAffichage[]>(this.URL_BACKEND + 'reservations-vehicules/me');
   }
 }
+
