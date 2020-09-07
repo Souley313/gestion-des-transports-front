@@ -1,5 +1,6 @@
 import { AuthService } from './../auth/auth.service';
 import { ReservationCovoiturageAffichage } from './../models/ReservationCovoiturageAffichage';
+import { ReservationVehiculeAffichage } from './../models/ReservationVehiculeAffichage';
 import { DataService } from './../services/data.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
@@ -10,10 +11,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class CollabReservationsComponent implements OnInit, OnDestroy {
   showVehicules = false;
-  showCovoiturages = true;
+  showCovoiturages = false;
   showCourses = false;
   reservationsCovoiturageHistoriqueAffichage: ReservationCovoiturageAffichage[];
   reservationsCovoiturageEnCoursAffichage: ReservationCovoiturageAffichage[];
+  reservationsVehiculeHistoriqueAffichage: ReservationVehiculeAffichage[];
+  reservationsVehiculeEnCoursAffichage: ReservationVehiculeAffichage[];
   matricule: string;
   constructor(protected dataService: DataService, protected authService: AuthService) { }
 
@@ -38,6 +41,15 @@ export class CollabReservationsComponent implements OnInit, OnDestroy {
       value => {
         this.reservationsCovoiturageHistoriqueAffichage = value.filter(reservation => new Date(reservation.dateDepart).getTime() < Date.now());
         this.reservationsCovoiturageEnCoursAffichage = value.filter(reservation => new Date(reservation.dateDepart).getTime() >= Date.now());
+      },
+      err => { },
+      () => { }
+    );
+
+    this.dataService.getAllReservationsVehiculeAffichageByPassager().subscribe(
+      value => {
+        this.reservationsVehiculeHistoriqueAffichage = value.filter(reservation => new Date(reservation.dateDepart).getTime() < Date.now());
+        this.reservationsVehiculeEnCoursAffichage = value.filter(reservation => new Date(reservation.dateDepart).getTime() >= Date.now());
       },
       err => { },
       () => { }

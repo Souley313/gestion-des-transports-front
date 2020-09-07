@@ -1,0 +1,26 @@
+<p class="card-text">Mes réservations de véhicules</p>
+<table class="table table-striped w-auto" *ngIf="reservationsVehiculeAffichage.length != 0">
+  <thead>
+    <tr>
+      <th>Date de début</th>
+      <th>Date de fin</th>
+      <th>Immatriculation</th>
+      <th>Modèle</th>
+      <th>Marque</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reservation of reservationsVehiculeAffichage">
+      <td>{{reservation.dateDepart}}</td>
+      <td>{{reservation.dateFin}}</td>
+      <td>{{reservation.immatriculation}}</td>
+      <td>{{reservation.marque}}</td>
+      <td>{{reservation.modele}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<p *ngIf="reservationsVehiculeAffichage.length === 0" class="text-muted">Il n'y a pas de réservations de
+  véhicule.</p>
