@@ -33,7 +33,7 @@
           <input type="search" class="form-control" name="searchFirstname" [(ngModel)]="prenom" placeholder="Recherche par prénom">
         </div>
         <div class="col-md-5">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Ajouter un chauffeur</button>
+          <button type="button" class="btn btn-primary" (click)="openModal(content)">Ajouter un chauffeur</button>
 
         </div>
       </div>
@@ -68,39 +68,25 @@
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nouveau Chauffeur</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="registerForm">
-          <div class="form-group">
-            <label class="center-block">Maricule:
-              <input type="search" class="form-control" formControlName="matricule"
-                placeholder="Recherche par matricule">
-            </label>
-          </div>
-          <div *ngIf="registerForm.controls['matricule'].invalid && (registerForm.controls['matricule'].dirty || registerForm.controls['matricule'].touched)" class="alert alert-danger">
-            <div *ngIf="registerForm.controls['matricule'].errors.required">
-            Matricule is required.
-            </div>
-           </div>
-            <div class="text-center">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                <button type="submit" (click)="creerChauffeur()" class="btn btn-primary">Ajouter</button>
-                
-              </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        
-      </div>
+<!--FENETRE MODALE: AJOUT CHAUFFEUR-->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title w-100" id="myModalLabel">Nouveau chauffeur</h4>
+  </div>
+  <div class="modal-body">
+    <div class="row align-items-center mt-3">
+      <!--BARRE RECHERCHE MATRICULE-->
+        <div class="col-md-12">
+          <form>
+            <label class="ml-2">Matricule: </label>
+            <input type="search" class="form-control" name="searchName" placeholder="Recherche par matricule">
+          </form>
+        </div>
     </div>
   </div>
-</div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" mdbBtn aria-label="Close"
+      (click)="modal.dismiss()" mdbWavesEffect>Annuler</button>
+    <button type="submit" (click)="creerChauffeur()" class="btn btn-primary" aria-label="Close" mdbWavesEffect>Ajouter</button>
+  </div>
+</ng-template>  
