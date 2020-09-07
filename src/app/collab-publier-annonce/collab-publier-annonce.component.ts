@@ -3,7 +3,7 @@ import { AnnonceCovoiturage } from '../models/AnnonceCovoiturage';
 import { AuthService } from '../auth/auth.service';
 import { DataService } from '../services/data.service';
 import { formatDate } from '@angular/common';
-import { mockAnnonce } from '../mocks/MockAnnonceCovoiturage';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-collab-publier-annonce',
@@ -16,8 +16,13 @@ export class CollabPublierAnnonceComponent implements OnInit {
   today = new Date();
   jstoday: string;
 
-  constructor( private authSrv: AuthService, private dataSrv: DataService) {
+  constructor( private authSrv: AuthService, private dataSrv: DataService,
+               private modalService: NgbModal) {
     this.jstoday = formatDate( this.today, 'yyyy-MM-ddThh:mm', 'fr-FR', '+0200');
+  }
+
+  afficherConfirmation( content: any) {
+    this.modalService.open( content);
   }
 
   publier(): void {
@@ -26,7 +31,6 @@ export class CollabPublierAnnonceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.annonce = mockAnnonce;
     this.authSrv.collegueConnecteObs.subscribe(
       collegue => this.annonce.conducteur = collegue.matricule
     );

@@ -1,1 +1,59 @@
-<p>collab-annonces works!</p>
+<div class="container mt-5">
+
+  <div class="col-12">
+    <h2>Vos annonces</h2>
+
+    <div class="float-right">
+      <button routerLink="/collaborateur/annonces/creer" class="btn btn-secondary" >Créer une nouvelle annonce</button>
+    </div>
+
+    <div class="mt-5">
+      <h5>Annonces en cours</h5>
+
+            <table class="table table-bordered table-striped table-sm mt-4">
+        <thead>
+          <tr>
+            <th scope="col">Date / heure de départ</th>
+            <th scope="col">Lieu de départ</th>
+            <th scope="col">Lieu de destination</th>
+            <th scope="col">Nombre de voyageurs</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let ann of annoncesEnCours">
+            <td>{{ann.dateDepart | date:'dd/MM/yyyy hh:mm'}}</td>
+            <td>{{ann.lieuDeDpart}}</td>
+            <td>{{ann.lieuDeDestination}}</td>
+            <td>{{ann.nombreDeVoyageurs}}</td>
+            <td> <button type="button" class="btn btn-outline-danger btn-sm">Annuler</button> </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="mt-5">
+      <h5>Historique</h5>
+      <table class="table table-bordered table-striped table-sm mt-4">
+        <thead>
+          <tr>
+            <th scope="col">Date / heure de départ</th>
+            <th scope="col">Lieu de départ</th>
+            <th scope="col">Lieu de destination</th>
+            <th scope="col">Nombre de voyageurs</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let ann of annoncesHistorique">
+            <td>{{ann.dateDepart | date:'dd/MM/yyyy hh:mm'}}</td>
+            <td>{{ann.infosDepart}}</td>
+            <td>{{ann.infosDestination}}</td>
+            <td>{{ann.nbPlacesDisponibles}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
