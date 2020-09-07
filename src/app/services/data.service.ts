@@ -9,13 +9,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { ChauffeurDto } from '../models/ChauffeurDto';
-<<<<<<< HEAD
 import { ReservationVehiculeAffichage } from '../models/ReservationVehiculeAffichage';
-=======
 import { AnnonceDto } from '../models/AnnonceDto';
 
-
->>>>>>> 3e949d865d895399cb5306949cda1d24c3bce5cd
 
 @Injectable({
   providedIn: 'root'
