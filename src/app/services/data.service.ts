@@ -74,9 +74,9 @@ export class DataService {
     return this.http.get<AnnonceDto[]>(this.URL_BACKEND + 'reservations-covoiturage/conducteur');
   }
 
-  getAllReservationsEntrepriseAffichageByReservant( matricule: string): Observable<ReservationEntrepriseAffichage[]> {
-    const request =  this.URL_BACKEND + 'reservation-entreprise/' + matricule;
-    return this.http.get<ReservationEntrepriseAffichage[]>( request);
+  getAllReservationsEntrepriseAffichageByReservant(matricule: string): Observable<ReservationEntrepriseAffichage[]> {
+    const request = this.URL_BACKEND + 'reservation-entreprise/' + matricule;
+    return this.http.get<ReservationEntrepriseAffichage[]>(request);
   }
 
   annulerReservation(updateStatut: ReservationCovoiturageUpdateStatutReservation): Observable<ReservationCovoiturageUpdateStatutReservation> {
@@ -90,6 +90,12 @@ export class DataService {
     return this.http.patch<AnnonceCovoiturageUpdateStatutReservation>(
       this.URL_BACKEND + 'reservations-covoiturage/conducteur',
       updateStatut
+    );
+  }
+
+  getVehiculeEntreprise(vehiculeEntrepriseId: string): Observable<VehiculeEntrepriseInfosGenerales> {
+    return this.http.get<VehiculeEntrepriseInfosGenerales>(
+      this.URL_BACKEND + 'vehicules-entreprise/' + vehiculeEntrepriseId,
     );
   }
 }

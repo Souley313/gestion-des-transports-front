@@ -1,3 +1,4 @@
+import { AdminDetailsVehiculeComponent } from './admin-details-vehicule/admin-details-vehicule.component';
 import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-publier-annonce.component';
 import { AdminVehiculesEntrepriseComponent } from './admin-vehicules-entreprise/admin-vehicules-entreprise.component';
 import { CollabReserverComponent } from './collab-reserver/collab-reserver.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'collaborateur/statistiques', component: CollabStatistiquesComponent, canActivate: [StatutConnecteService] },
   { path: 'collaborateur/reserver', component: CollabReserverComponent, canActivate: [StatutConnecteService] },
   { path: 'administrateur/vehicules', component: AdminVehiculesEntrepriseComponent, canActivate: [StatutConnecteService] },
+  { path: 'administrateur/vehicules/:vehicleEntrepriseId', component: AdminDetailsVehiculeComponent, canActivate: [StatutConnecteService] },
   { path: '', redirectTo: '/tech', pathMatch: 'full' }
 ];
 
