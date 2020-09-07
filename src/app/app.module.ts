@@ -28,6 +28,8 @@ import { AdminChauffeursComponent } from './admin-chauffeurs/admin-chauffeurs.co
 import { CollabReserverCovoiturageComponent } from './collab-reserver-covoiturage/collab-reserver-covoiturage.component';
 import { CollabReserverComponent } from './collab-reserver/collab-reserver.component';
 import { AdminVehiculesEntrepriseComponent } from './admin-vehicules-entreprise/admin-vehicules-entreprise.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -55,7 +57,9 @@ import { AdminVehiculesEntrepriseComponent } from './admin-vehicules-entreprise/
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule,
+    BrowserAnimationsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
