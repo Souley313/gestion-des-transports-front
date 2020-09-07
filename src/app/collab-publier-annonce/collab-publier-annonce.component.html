@@ -110,15 +110,15 @@
         <div class="col-6">Modèle</div>
         <div class="col-6">{{ annonce.vehicule.modele }}</div>
       </div>
-    </div>
       <div class="row">
         <div class="col-6">Date / heure de départ</div>
         <div class="col-6">{{ annonce.dateDepart | date:'dd/MM/yyyy hh:mm' }}</div>
       </div>
       <div class="row">
-        <div class="col-6">Date / heure retour</div>
+        <div class="col-6">Nombre de places</div>
         <div class="col-6">{{ annonce.vehicule.places }}</div>
       </div>
+    </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Annuler</button>
       <button type="button" class="btn btn-primary" (click)="publier(); modal.close('Save click')"
