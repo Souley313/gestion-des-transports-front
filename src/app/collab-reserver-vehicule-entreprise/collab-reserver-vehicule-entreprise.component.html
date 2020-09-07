@@ -25,8 +25,8 @@
       <div class="form-group row">
         <label for="chauffeur" class="col-md-5 col-form-label">Avec chauffeur</label>
         <div class="col-md-1">
-          <input type="checkbox" class="form-control" #etatChauffeur="ngModel"
-            name="chauffeur" [(ngModel)]="reservation.avecChauffeur">
+          <input type="checkbox" class="form-control" #etatChauffeur="ngModel" name="chauffeur"
+            [(ngModel)]="reservation.avecChauffeur">
         </div>
       </div>
 
@@ -35,7 +35,7 @@
           <div class="card mb-3" (click)="selectVehicule( vehicule); datesValides()">
             <span
               [ngClass]="{'border': vehicule.id != reservation.vehiculeId, 'border border-success' : vehicule.id == reservation.vehiculeId}">
-              <img src="{{ vehicule.photoUrl }}" alt="Photo" class="card-img-top">
+              <img src="{{ vehicule.photoUrl }}" alt="Photo" class="card-img-top" height="200px">
               <div class="text-center" style="margin-top: 10px;">
                 <h6>{{ vehicule.immatriculation }}</h6>
                 <p>{{ vehicule.marque }} - {{ vehicule.modele }} <br /> {{ vehicule.categorie }}</p>
@@ -91,6 +91,6 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Annuler</button>
     <button type="button" class="btn btn-primary" (click)="reserver(); modal.close('Save click')"
-    data-dismiss="modal">Confirmer</button>
+      data-dismiss="modal">Confirmer</button>
   </div>
 </ng-template>
