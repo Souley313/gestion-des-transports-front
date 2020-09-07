@@ -16,8 +16,8 @@
     </li>
   </ul>
   <div class="card-body">
-    <a routerLink="/collaborateur/annonces/creer" class="btn btn-primary my-4">Publier une annonce de covoiturage</a>
     <div *ngIf="showCovoiturages">
+      <a routerLink="/collaborateur/annonces/creer" class="btn btn-primary my-4">Publier une annonce de covoiturage</a>
       <h5 class="card-subtitle mb-2">En cours</h5>
       <app-collab-reservation-table [reservationsCovoiturageAffichage]='reservationsCovoiturageEnCoursAffichage'>
       </app-collab-reservation-table>
