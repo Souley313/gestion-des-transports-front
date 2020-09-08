@@ -46,7 +46,7 @@ export class CollabAnnoncesComponent implements OnInit {
     this.postSrv.getAllAnnonces().subscribe(
       value => {
         this.annoncesEnCours = value.filter(
-          annonce => new Date(annonce.dateDepart).getTime() > Date.now() &&
+          annonce => new Date(annonce.dateDepart).getTime() >= Date.now() &&
             annonce.statutAnnonceCovoiturage !== 'ANNULEE_PAR_CONDUCTEUR'
         );
         this.annoncesHistorique = value.filter(
