@@ -33,4 +33,25 @@ export class AdminDetailsVehiculeComponent implements OnInit {
     });
   }
 
+  updateToInService() {
+    this.vehicule.statutVehicule = 'EN_SERVICE';
+    this.dataService.updateVehiculeEntreprise(this.vehicule).subscribe(response => {
+      this.vehicule = response;
+    });
+  }
+
+  updateToOutOfService() {
+    this.vehicule.statutVehicule = 'HORS_SERVICE';
+    this.dataService.updateVehiculeEntreprise(this.vehicule).subscribe(response => {
+      this.vehicule = response;
+    });
+  }
+
+  updateToReparation() {
+    this.vehicule.statutVehicule = 'EN_REPARATION';
+    this.dataService.updateVehiculeEntreprise(this.vehicule).subscribe(response => {
+      this.vehicule = response;
+    });
+  }
+
 }
