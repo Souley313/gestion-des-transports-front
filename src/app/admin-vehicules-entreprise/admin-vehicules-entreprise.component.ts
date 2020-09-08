@@ -1,4 +1,5 @@
 import { MapService } from './../services/map.service';
+import { Router } from '@angular/router';
 import { DataService } from './../services/data.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { VehiculeEntrepriseInfosGenerales, CATEGORIES_VEHICULE } from './../models/VehiculeEntrepriseInfosGenerales';
@@ -21,7 +22,8 @@ export class AdminVehiculesEntrepriseComponent implements OnInit {
   isSubmitted = false;
   hasError = false;
   categories = CATEGORIES_VEHICULE;
-  constructor(protected dataService: DataService, private modalService: NgbModal, protected mapSubject: MapService) { }
+
+  constructor(protected dataService: DataService, private modalService: NgbModal, private router: Router, protected mapSubject: MapService) { }
 
   updateAffichageImmatriculation(): void {
     if (this.rechercheVehicule.immatriculation != null && this.rechercheVehicule.immatriculation !== '') {
@@ -86,6 +88,10 @@ export class AdminVehiculesEntrepriseComponent implements OnInit {
       err => { },
       () => { }
     );
+  }
+
+  onGetDetail(vehiculeEntrepriseId: string) {
+    this.router.navigate(['/administrateur/vehicules', vehiculeEntrepriseId]);
   }
 
 }

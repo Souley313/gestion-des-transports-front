@@ -27,7 +27,7 @@
 </div>
 
 <div class="row">
-  <div *ngFor="let vehicule of resultatsRecherche" class="col-md-6 col-xl-4">
+  <div *ngFor="let vehicule of resultatsRecherche" (click)="onGetDetail(vehicule.id)" class="col-md-6 col-xl-4">
     <div class="card mb-3">
       <img src="{{vehicule.photoUrl}}" alt="Photo de {{vehicule.marque}} {{vehicule.modele}}" class="card-img-top"
         height="200px">
