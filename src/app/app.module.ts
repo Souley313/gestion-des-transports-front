@@ -28,6 +28,7 @@ import { AdminChauffeursComponent } from './admin-chauffeurs/admin-chauffeurs.co
 import { CollabReserverCovoiturageComponent } from './collab-reserver-covoiturage/collab-reserver-covoiturage.component';
 import { CollabReserverComponent } from './collab-reserver/collab-reserver.component';
 import { AdminVehiculesEntrepriseComponent } from './admin-vehicules-entreprise/admin-vehicules-entreprise.component';
+import { StatutAnnoncePipe } from './statut-annonce.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
 
@@ -48,7 +49,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AdminChauffeursComponent,
     CollabReserverCovoiturageComponent,
     CollabReserverComponent,
-    AdminVehiculesEntrepriseComponent
+    AdminVehiculesEntrepriseComponent,
+    StatutAnnoncePipe
   ],
   imports: [
     BrowserModule,

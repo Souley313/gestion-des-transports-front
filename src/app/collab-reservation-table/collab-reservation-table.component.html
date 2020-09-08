@@ -1,6 +1,6 @@
 <div *ngIf="isSubmitted && !isClosed" class="mb-3">
   <ngb-alert [type]="'success'" (close)="close()">La réservation a bien été
-    enregistrée</ngb-alert>
+    annulée</ngb-alert>
 </div>
 <div *ngIf="hasError && !isClosed" class="mb-3">
   <ngb-alert [type]="'danger'" (close)="close()">{{errorAnnulation.error.status}} : {{errorAnnulation.error.error}}
@@ -15,6 +15,7 @@
       <th>Départ</th>
       <th>Destination</th>
       <th *ngIf="displayStatut">Statut</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -22,7 +23,7 @@
       <td>{{reservation.dateDepart | date:'dd/MM/yyyy hh:mm'}}</td>
       <td>{{reservation.infosDepart}}</td>
       <td>{{reservation.infosDestination}}</td>
-      <td *ngIf="displayStatut">{{reservation.statutReservationCovoiturage}}</td>
+      <td *ngIf="displayStatut">{{reservation.statutReservationCovoiturage | statut}}</td>
       <td>
         <button class="btn btn-secondary" (click)="afficherDetails(reservation, mymodal)">Détails</button>
         <button *ngIf="!displayStatut" class="btn btn-danger ml-2"
