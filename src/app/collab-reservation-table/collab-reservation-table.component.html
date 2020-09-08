@@ -1,0 +1,89 @@
+<div *ngIf="isSubmitted && !isClosed" class="mb-3">
+  <ngb-alert [type]="'success'" (close)="close()">La réservation a bien été
+    annulée</ngb-alert>
+</div>
+<div *ngIf="hasError && !isClosed" class="mb-3">
+  <ngb-alert [type]="'danger'" (close)="close()">{{errorAnnulation.error.status}} : {{errorAnnulation.error.error}}
+    {{errorAnnulation.message}}
+  </ngb-alert>
+</div>
+
+<table class="table table-striped w-auto" *ngIf="reservationsCovoiturageAffichage.length != 0">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Départ</th>
+      <th>Destination</th>
+      <th *ngIf="displayStatut">Statut</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reservation of reservationsCovoiturageAffichage">
+      <td>{{reservation.dateDepart | date:'dd/MM/yyyy hh:mm'}}</td>
+      <td>{{reservation.infosDepart}}</td>
+      <td>{{reservation.infosDestination}}</td>
+      <td *ngIf="displayStatut">{{reservation.statutReservationCovoiturage | statut}}</td>
+      <td>
+        <button class="btn btn-secondary" (click)="afficherDetails(reservation, mymodal)">Détails</button>
+        <button *ngIf="!displayStatut" class="btn btn-danger ml-2"
+          (click)="confirmerAnnulation(reservation, modalAnnuler)">Annuler</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Détails du covoiturage</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-4">Départ</div>
+      <div class="col-8">{{reservationModal.infosDepart}}</div>
+    </div>
+    <div class="row">
+      <div class="col-4">Destination</div>
+      <div class="col-8">{{reservationModal.infosDestination}}</div>
+    </div>
+    <div class="row">
+      <div class="col-4">Date de départ</div>
+      <div class="col-8">{{reservationModal.dateDepart | date:'dd/MM/yyyy hh:mm'}}</div>
+    </div>
+    <div class="row">
+      <div class="col-4">Véhicule</div>
+      <div class="col-8">{{reservationModal.infosVehiculeParticulier}}</div>
+    </div>
+    <div class="row">
+      <div class="col-4">Conducteur</div>
+      <div class="col-8">{{reservationModal.infosConducteur}}</div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Fermer</button>
+  </div>
+</ng-template>
+
+<ng-template #modalAnnuler let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Annuler la réservation</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Voulez-vous annuler la réservation ?</p>
+    <p>Un email vous sera envoyé.</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary mr-2" (click)="modal.close('Save click')">Retour</button>
+    <button type="button" class="btn btn-primary"
+      (click)="modal.close('Save click'); annulerReservation()">Confirmer</button>
+  </div>
+</ng-template>
+
+<p *ngIf="reservationsCovoiturageAffichage.length === 0" class="text-muted">Il n'y a pas de réservations de
+  covoiturage.</p>

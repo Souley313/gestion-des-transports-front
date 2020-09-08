@@ -1,0 +1,96 @@
+<!-- Formulaire de reservation -->
+<form #etatForm="ngForm">
+  <div class="row">
+    <div class="col-12">
+
+      <!-- Choix dates -->
+      <div class="form-group row" [ngClass]="{'was-validated': etatDateHeureResa.touched}">
+        <label for="dateHeure" class="col-md-5 col-form-label">Date / heure de réservation *</label>
+        <div class="col-md-7">
+          <input type="datetime-local" min="{{ dateDepartMin }}" class="form-control" #etatDateHeureResa="ngModel"
+            name="dateHeure" [(ngModel)]="reservation.dateDepart" (change)="datesValides()" required>
+          <div class="valid-feedback" *ngIf="setMinDateRetour()"></div>
+          <div class="invalid-feedback">La date et l'heure sont obligatoires</div>
+        </div>
+      </div>
+      <div class="form-group row" [ngClass]="{'was-validated': etatDateHeureRetour.touched}">
+        <label for="dateHeure" class="col-md-5 col-form-label">Date / heure retour *</label>
+        <div class="col-md-7">
+          <input type="datetime-local" min="{{ dateRetourMin }}" class="form-control" #etatDateHeureRetour="ngModel"
+            name="dateHeure" [(ngModel)]="reservation.dateArrivee" (change)="datesValides()" required>
+          <div class="valid-feedback"></div>
+          <div class="invalid-feedback">La date et l'heure sont obligatoires</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="chauffeur" class="col-md-5 col-form-label">Avec chauffeur</label>
+        <div class="col-md-1">
+          <input type="checkbox" class="form-control" #etatChauffeur="ngModel" name="chauffeur"
+            [(ngModel)]="reservation.avecChauffeur">
+        </div>
+      </div>
+
+      <div class="row">
+        <div *ngFor="let vehicule of vehicules" class="col-md-6 col-xl-4">
+          <div class="card mb-3" (click)="selectVehicule( vehicule); datesValides()">
+            <span
+              [ngClass]="{'border': vehicule.id != reservation.vehiculeId, 'border border-success' : vehicule.id == reservation.vehiculeId}">
+              <img src="{{ vehicule.photoUrl }}" alt="Photo" class="card-img-top" height="200px">
+              <div class="text-center" style="margin-top: 10px;">
+                <h6>{{ vehicule.immatriculation }}</h6>
+                <p>{{ vehicule.marque }} - {{ vehicule.modele }} <br /> {{ vehicule.categorie }}</p>
+                <div class="text-danger" *ngIf="vehicule.statutVehicule != 'EN_SERVICE'">NON DISPONIBLE</div>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bouton réserver -->
+      <div class="text-center" style="margin: 10px;">
+        <button class="btn btn-secondary" *ngIf="!dateValid">Déjà réservé à cette période</button>
+        <button class="btn btn-primary" *ngIf="dateValid" (click)="afficherConfirmation( mymodal)">Réserver</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Réservation d'un véhicule</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-6">Date / heure de réservation</div>
+      <div class="col-6">{{ reservation.dateDepart | date:'dd/MM/yyyy hh:mm' }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Date / heure retour</div>
+      <div class="col-6">{{ reservation.dateArrivee | date:'dd/MM/yyyy hh:mm' }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Immatriculation</div>
+      <div class="col-6">{{ vehiculeSelected.immatriculation }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Marque</div>
+      <div class="col-6">{{ vehiculeSelected.marque }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Modèle</div>
+      <div class="col-6">{{ vehiculeSelected.modele }}</div>
+    </div>
+    <div class="row" *ngIf="reservation.avecChauffeur">
+      <div class="col-6"></div>
+      <div class="col-6">Avec chauffeur</div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Annuler</button>
+    <button type="button" class="btn btn-primary" (click)="reserver(); modal.close('Save click')"
+      data-dismiss="modal">Confirmer</button>
+  </div>
+</ng-template>

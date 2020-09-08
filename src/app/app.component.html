@@ -1,3 +1,4 @@
+
 <ng-container *ngIf="collegueConnecte | async as col">
   <div *ngIf="!col.estAnonyme()">
     <app-collab-menu></app-collab-menu>
@@ -11,6 +12,7 @@
       <ul>
         <li *ngFor="let r of col.roles">{{r}}</li>
       </ul>
+      <p>Matricule : {{col.matricule}}</p>
     </div>
   </ng-container>
   <router-outlet></router-outlet>

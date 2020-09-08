@@ -1,0 +1,127 @@
+
+<!-- Formulaire d'annonce -->
+<form #etatForm="ngForm">
+  <div class="row">
+    <div class="col-12">
+      <h3>Publier une annonce</h3>
+
+      <h5>Itinéraire</h5>
+      <div class="form-group row" [ngClass]="{'was-validated': etatDepart.touched}">
+        <label for="depart" class="col-md-5 col-form-label">Adresse de départ *</label>
+        <div class="col-md-7">
+          <input type="text" class="form-control" #etatDepart="ngModel" name="depart" placeholder="départ"
+            [(ngModel)]="annonce.depart" required>
+          <div class="valid-feedback"></div>
+          <div class="invalid-feedback">L'adresse de départ est une adresse inconnue</div>
+        </div>
+      </div>
+      <div class="form-group row" [ngClass]="{'was-validated': etatDestination.touched}">
+        <label for="destination" class="col-md-5 col-form-label">Adresse de destination *</label>
+        <div class="col-md-7">
+          <input type="text" class="form-control" #etatDestination="ngModel" name="destination"
+            placeholder="destination" [(ngModel)]="annonce.destination" required>
+          <div class="valid-feedback"></div>
+          <div class="invalid-feedback">L'adresse de destination est une adresse inconnue</div>
+        </div>
+      </div>
+
+      <h5>Véhicule</h5>
+      <div class="form-group row" [ngClass]="{'was-validated': etatImmatriculation.touched}">
+        <label for="immatriculation" class="col-md-5 col-form-label">Immatriculation *</label>
+        <div class="col-md-7">
+          <input type="text" class="form-control" #etatImmatriculation="ngModel" name="immatriculation"
+            placeholder="Immatricuation" [(ngModel)]="annonce.vehicule.immatriculation" required>
+          <div class="valid-feedback"></div>
+          <div class="invalid-feedback">L'immatriculation est obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group row" [ngClass]="{'was-validated': etatMarque.touched}">
+        <label for="marque" class="col-md-5 col-form-label">Marque *</label>
+        <div class="col-md-7">
+          <input type="text" class="form-control" #etatMarque="ngModel" name="marque" placeholder="Marque"
+            [(ngModel)]="annonce.vehicule.marque" required>
+          <div class="valid-feedback"></div>
+          <div class="invalid-feedback">La marque est obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group row" [ngClass]="{'was-validated': etatModele.touched}">
+        <label for="modele" class="col-md-5 col-form-label">Modèle *</label>
+        <div class="col-md-7">
+          <input type="text" class="form-control" #etatModele="ngModel" name="modele" placeholder="Modèle"
+            [(ngModel)]="annonce.vehicule.modele" required>
+          <div class="valid-feedback"></div>
+          <div class="invalid-feedback">Le modèle est obligatoire</div>
+        </div>
+      </div>
+      <div class="form-group row" [ngClass]="{'was-validated': etatPlaces.touched}">
+        <label for="places" class="col-md-5 col-form-label">Nombre de places disponibles *</label>
+        <div class="col-md-2">
+          <input type="number" min="1" max="20" class="form-control" #etatPlaces="ngModel" name="places"
+            [(ngModel)]="annonce.vehicule.places" required>
+          <div class="valid-feedback"></div>
+          <div class="invalid-feedback">Le nombre de places doit être compris entre 1 et 20</div>
+        </div>
+      </div>
+
+      <h5>Date et horaire</h5>
+      <div class="form-group row" [ngClass]="{'was-validated': etatDateHeure.touched}">
+        <label for="dateHeure" class="col-md-5 col-form-label">Date / heure *</label>
+        <div class="col-md-7">
+          <input type="datetime-local" min="{{ jstoday }}" class="form-control" #etatDateHeure="ngModel"
+            name="dateHeure" [(ngModel)]="annonce.dateDepart" required>
+          <div class="valid-feedback"></div>
+          <div class="invalid-feedback">La date et l'heure sont obligatoires</div>
+        </div>
+      </div>
+      <div class="text-right">
+        <button class="btn btn-secondary" *ngIf="etatForm.invalid">Publier</button>
+          <button class="btn btn-primary" *ngIf="etatForm.valid" (click)="afficherConfirmation( mymodal)">Publier</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Modal Confirmation -->
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Confirmation de votre proposition</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-6">Adresse de départ</div>
+        <div class="col-6">{{ annonce.depart }}</div>
+      </div>
+      <div class="row">
+        <div class="col-6">Adresse de destination</div>
+        <div class="col-6">{{ annonce.destination }}</div>
+      </div>
+      <div class="row">
+        <div class="col-6">Immatriculation</div>
+        <div class="col-6">{{ annonce.vehicule.immatriculation }}</div>
+      </div>
+      <div class="row">
+        <div class="col-6">Marque</div>
+        <div class="col-6">{{ annonce.vehicule.marque }}</div>
+      </div>
+      <div class="row">
+        <div class="col-6">Modèle</div>
+        <div class="col-6">{{ annonce.vehicule.modele }}</div>
+      </div>
+      <div class="row">
+        <div class="col-6">Date / heure de départ</div>
+        <div class="col-6">{{ annonce.dateDepart | date:'dd/MM/yyyy hh:mm' }}</div>
+      </div>
+      <div class="row">
+        <div class="col-6">Nombre de places</div>
+        <div class="col-6">{{ annonce.vehicule.places }}</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Annuler</button>
+      <button type="button" class="btn btn-primary" (click)="publier(); modal.close('Save click')"
+      data-dismiss="modal">Confirmer</button>
+    </div>
+  </ng-template>

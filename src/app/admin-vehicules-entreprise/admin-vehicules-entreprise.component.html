@@ -1,0 +1,114 @@
+<h1 class="mb-3">Véhicules de société</h1>
+<div class="form-group row">
+  <label for="immatriculation" class="col-md-5 col-form-label">Immatriculation</label>
+  <div class="col-md-7">
+    <input type="text" class="form-control" #etatImmatriculation="ngModel" name="immatriculation"
+      [(ngModel)]="rechercheVehicule.immatriculation" (change)="updateAffichageImmatriculation()">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="marque" class="col-md-5 col-form-label">Marque</label>
+  <div class="col-md-7">
+    <input type="text" class="form-control" #etatMarque="ngModel" name="marque" [(ngModel)]="rechercheVehicule.marque"
+      (change)="updateAffichageMarque()">
+  </div>
+</div>
+<button class="btn btn-primary text-right mb-3" (click)="afficherModalCreation(modalCreation)">Ajouter un
+  véhicule</button>
+
+<div *ngIf="isSubmitted && !closed">
+  <ngb-alert [type]="'success'" (close)="close()">Le véhicule de société a bien été
+    enregistré</ngb-alert>
+</div>
+<div *ngIf="hasError && !closed">
+  <ngb-alert [type]="'danger'" (close)="close()">{{errorVehicule.error.status}} : {{errorVehicule.error.error}}
+    {{errorVehicule.message}}
+  </ngb-alert>
+</div>
+
+<div class="row">
+  <div *ngFor="let vehicule of resultatsRecherche" (click)="onGetDetail(vehicule.id)" class="col-md-6 col-xl-4">
+    <div class="card mb-3">
+      <img src="{{vehicule.photoUrl}}" alt="Photo de {{vehicule.marque}} {{vehicule.modele}}" class="card-img-top"
+        height="200px">
+      <div class="card-body">
+        <h5 class="card-title">{{vehicule.immatriculation}}</h5>
+        <p class="card-text">{{vehicule.marque}} - {{vehicule.modele}}</p>
+        <p class="card-text">{{vehicule.categorie}}</p>
+        <a routerLink="/administrateur/vehicules/{{vehicule.id}}" class="stretched-link"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #modalCreation let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ajouter un véhicule</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #stateForm="ngForm">
+      <div class="form-group row" [ngClass]="{'was-validated': stateImmatriculation.touched}">
+        <label for="immatriculation" class="col-md-5 col-form-label">Immatriculation</label>
+        <div class="col-md-7">
+          <input type="text" class="form-control" #stateImmatriculation="ngModel" name="immatriculation"
+            [(ngModel)]="vehiculeCree.immatriculation" required>
+        </div>
+        <div class="valid-feedback"></div>
+        <div class="invalid-feedback"></div>
+      </div>
+      <div class="form-group row" [ngClass]="{'was-validated': stateMarque.touched}">
+        <label for="marque" class="col-md-5 col-form-label">Marque</label>
+        <div class="col-md-7">
+          <input type="text" class="form-control" #stateMarque="ngModel" name="marque" [(ngModel)]="vehiculeCree.marque"
+            required>
+        </div>
+        <div class="valid-feedback"></div>
+        <div class="invalid-feedback"></div>
+      </div>
+      <div class="form-group row" [ngClass]="{'was-validated': stateModele.touched}">
+        <label for="modele" class="col-md-5 col-form-label">Modèle</label>
+        <div class="col-md-7">
+          <input type="text" class="form-control" #stateModele="ngModel" name="modele" [(ngModel)]="vehiculeCree.modele"
+            required>
+        </div>
+        <div class="valid-feedback"></div>
+        <div class="invalid-feedback"></div>
+      </div>
+      <div class="form-group row" [ngClass]="{'was-validated': stateCategorie.touched}">
+        <label for="categorie" class="col-md-5 col-form-label">Catégorie</label>
+        <select class="form-control" #stateCategorie="ngModel" name="categorie" [(ngModel)]="vehiculeCree.categorie"
+          required>
+          <option *ngFor="let categorie of categories" [value]="categorie.name">{{categorie.name}}</option>
+        </select>
+        <div class="valid-feedback"></div>
+        <div class="invalid-feedback"></div>
+      </div>
+      <div class="form-group row" [ngClass]="{'was-validated': stateNbPlaces.touched}">
+        <label for="nbPlaces" class="col-md-5 col-form-label">Places</label>
+        <div class="col-md-7">
+          <input type="number" class="form-control" #stateNbPlaces="ngModel" name="nbPlaces"
+            [(ngModel)]="vehiculeCree.nbPlaces" min="1" max="20" required>
+        </div>
+        <div class="valid-feedback"></div>
+        <div class="invalid-feedback"></div>
+      </div>
+      <div class="form-group row" [ngClass]="{'was-validated': statePhotoUrl.touched}">
+        <label for="photoUrl" class="col-md-5 col-form-label">Photo</label>
+        <div class="col-md-7">
+          <input type="text" class="form-control" #statePhotoUrl="ngModel" name="photoUrl"
+            [(ngModel)]="vehiculeCree.photoUrl" required>
+        </div>
+        <div class="valid-feedback"></div>
+        <div class="invalid-feedback"></div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary mr-5" (click)="modal.close('Save click')">Annuler</button>
+    <button type="button" class="btn btn-primary"
+      (click)="ajouterVehicule(); modal.close('Save click')">Ajouter</button>
+  </div>
+</ng-template>
