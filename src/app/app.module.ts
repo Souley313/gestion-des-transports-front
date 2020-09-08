@@ -32,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminDetailsVehiculeComponent } from './admin-details-vehicule/admin-details-vehicule.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     NgbModule,
     NgxPaginationModule,
     BrowserAnimationsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTableModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
