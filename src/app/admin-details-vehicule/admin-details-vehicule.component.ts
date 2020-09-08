@@ -14,13 +14,15 @@ export class AdminDetailsVehiculeComponent implements OnInit {
   vehuculeId: string;
   vehicule: VehiculeEntrepriseInfosGenerales;
 
-  displayedColumns: string[] = ['dateDebut', 'dateFin'];
+
+  displayedColumns: string[] = ['dateDebut', 'dateFin', 'responsable'];
+
 
   ngOnInit(): void {
-    this.getVehuculeDetail();
+    this.getVehiculeDetail();
   }
 
-  getVehuculeDetail() {
+  getVehiculeDetail() {
     this.route.paramMap.subscribe(params => {
       this.vehuculeId = params.get('vehicleEntrepriseId');
 
