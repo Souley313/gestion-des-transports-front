@@ -33,6 +33,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminDetailsVehiculeComponent } from './admin-details-vehicule/admin-details-vehicule.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
+import { ChauffeurPlanningComponent } from './chauffeur-planning/chauffeur-planning.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { MatTableModule } from '@angular/material/table';
     CollabReserverComponent,
     AdminVehiculesEntrepriseComponent,
     StatutAnnoncePipe,
-    AdminDetailsVehiculeComponent
+    AdminDetailsVehiculeComponent,
+    ChauffeurPlanningComponent
   ],
   imports: [
     BrowserModule,
