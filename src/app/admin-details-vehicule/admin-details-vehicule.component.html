@@ -1,0 +1,14 @@
+<mat-grid-list cols="2" rowHeight="100px" gutterSize="10px">
+  <mat-grid-tile [colspan]="1" [rowspan]="3">
+    <img class="car-image" [src]="vehicule.photoUrl">
+  </mat-grid-tile>
+  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="1">
+    <div>Marque: {{vehicule.marque}}</div>
+  </mat-grid-tile>
+  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="1">
+    <div>Modèle: {{vehicule.modele}}</div>
+  </mat-grid-tile>
+  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="1">
+    <div>égorie: {{vehicule.categorie}}</div>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -30,6 +30,8 @@ import { AdminVehiculesEntrepriseComponent } from './admin-vehicules-entreprise/
 import { StatutAnnoncePipe } from './statut-annonce.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AdminDetailsVehiculeComponent } from './admin-details-vehicule/admin-details-vehicule.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -49,7 +51,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CollabReserverCovoiturageComponent,
     CollabReserverComponent,
     AdminVehiculesEntrepriseComponent,
-    StatutAnnoncePipe
+    StatutAnnoncePipe,
+    AdminDetailsVehiculeComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     NgbModule,
     NgxPaginationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatGridListModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
