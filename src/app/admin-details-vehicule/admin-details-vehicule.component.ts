@@ -14,7 +14,9 @@ export class AdminDetailsVehiculeComponent implements OnInit {
   vehuculeId: string;
   vehicule: VehiculeEntrepriseInfosGenerales;
 
+
   displayedColumns: string[] = ['dateDebut', 'dateFin', 'responsable'];
+
 
   ngOnInit(): void {
     this.getVehiculeDetail();

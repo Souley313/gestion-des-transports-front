@@ -24,6 +24,7 @@
   </ng-container>
 
   <ng-container matColumnDef="dateFin">
+
     <th class="header-table" mat-header-cell *matHeaderCellDef> Date / Heure fin </th>
     <td class="content-table" mat-cell *matCellDef="let element"> {{element.dateArrivee | date:'dd/MM/yyyy HH:mm'}}
     </td>
@@ -33,6 +34,7 @@
     <th class="header-table" mat-header-cell *matHeaderCellDef> Responsable </th>
     <td class="content-table" mat-cell *matCellDef="let element"> {{element.reservant}}
     </td>
+
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
