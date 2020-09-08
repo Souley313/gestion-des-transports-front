@@ -30,6 +30,7 @@ import { AdminVehiculesEntrepriseComponent } from './admin-vehicules-entreprise/
 import { StatutAnnoncePipe } from './statut-annonce.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CollabReserverCovoiturageComponent,
     CollabReserverComponent,
     AdminVehiculesEntrepriseComponent,
-    StatutAnnoncePipe
+    StatutAnnoncePipe,
+    MapComponent
   ],
   imports: [
     BrowserModule,
