@@ -29,6 +29,8 @@ import { CollabReserverCovoiturageComponent } from './collab-reserver-covoiturag
 import { CollabReserverComponent } from './collab-reserver/collab-reserver.component';
 import { AdminVehiculesEntrepriseComponent } from './admin-vehicules-entreprise/admin-vehicules-entreprise.component';
 import { StatutAnnoncePipe } from './statut-annonce.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { StatutAnnoncePipe } from './statut-annonce.pipe';
     FormsModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule,
+    BrowserAnimationsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -56,5 +56,4 @@ export class CollabAnnoncesComponent implements OnInit {
       () => { }
     );
   }
-
 }

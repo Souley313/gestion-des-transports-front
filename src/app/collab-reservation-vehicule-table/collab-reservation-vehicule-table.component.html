@@ -1,26 +1,31 @@
-<p class="card-text">Mes réservations de véhicules</p>
-<table class="table table-striped w-auto" *ngIf="reservationsVehiculeAffichage.length != 0">
+<table class="table table-striped w-auto" *ngIf="reservationsEntreprise.length != 0">
   <thead>
     <tr>
-      <th>Date de début</th>
-      <th>Date de fin</th>
-      <th>Immatriculation</th>
-      <th>Modèle</th>
+      <th>Date / Heure début</th>
+      <th>Date / Heure fin</th>
+      <th>Imatriculation</th>
       <th>Marque</th>
+      <th>Modèle</th>
+      <th>Chauffeur</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let reservation of reservationsVehiculeAffichage">
-      <td>{{reservation.dateDepart}}</td>
-      <td>{{reservation.dateFin}}</td>
+    <tr *ngFor="let reservation of reservationsEntreprise">
+      <td>{{reservation.dateDepart | date:'dd/MM/yyyy hh:mm'}}</td>
+      <td>{{reservation.dateArrivee | date:'dd/MM/yyyy hh:mm'}}</td>
       <td>{{reservation.immatriculation}}</td>
       <td>{{reservation.marque}}</td>
       <td>{{reservation.modele}}</td>
+      <ng-container *ngIf="reservation.statut == 'EN_ATTENTE'; else elseTemplate">
+        <td>En attente</td>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <td>{{reservation.infosChauffeur}}</td>
+      </ng-template>
     </tr>
   </tbody>
 </table>
 
-
-
-<p *ngIf="reservationsVehiculeAffichage.length === 0" class="text-muted">Il n'y a pas de réservations de
-  véhicule.</p>
+<p *ngIf="reservationsEntreprise.length === 0" class="text-muted">
+  Il n'y a pas de réservations de véhicule.
+</p>
