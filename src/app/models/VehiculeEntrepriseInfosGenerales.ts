@@ -7,7 +7,9 @@ export class VehiculeEntrepriseInfosGenerales {
     public nbPlaces?: number,
     public photoUrl?: string,
     public statutVehicule?: string,
-    public id?: number
+    public id?: number,
+    public latitude?: number,
+    public longitude?: number
   ) { }
 }
 
