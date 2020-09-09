@@ -1,15 +1,21 @@
 version: "3.8"
 
 services:
+
   transports-db:
     build: ../transports-db
     image:  transports-db
     container_name: transports-db
-    networks:
-        - transports-network
     volumes:
-        - transports-data:/var/lib/mysql
-
+      - transports-data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=transports_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/tmp
+    networks:
+      - transports-network 
+    
   transports-back:
     image: transports-back
     build: ../gestion-des-transports-back/.
@@ -17,7 +23,7 @@ services:
     depends_on:
       - transports-db
     ports:
-      - "8081:8080"
+      - "8080:8080"
     networks:
       - transports-network
 

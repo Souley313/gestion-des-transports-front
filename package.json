@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "cross-var ng build --prod --base-href https://2020-d05-java-devops.github.io/gestion-des-transports-front",
+    "build": "cross-var ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
