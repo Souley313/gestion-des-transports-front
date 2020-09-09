@@ -8,7 +8,9 @@ export class VehiculeEntrepriseInfosGenerales {
     public photoUrl?: string,
     public statutVehicule?: string,
     public reservationsEntreprise?: ReservationEntreprise[],
-    public id?: number
+    public id?: number,
+    public latitude?: number,
+    public longitude?: number
   ) { }
 }
 

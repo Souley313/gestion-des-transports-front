@@ -1,3 +1,4 @@
+import { MapService } from './../services/map.service';
 import { Router } from '@angular/router';
 import { DataService } from './../services/data.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -22,7 +23,7 @@ export class AdminVehiculesEntrepriseComponent implements OnInit {
   hasError = false;
   categories = CATEGORIES_VEHICULE;
 
-  constructor(protected dataService: DataService, private modalService: NgbModal, private router: Router) { }
+  constructor(protected dataService: DataService, private modalService: NgbModal, private router: Router, protected mapSubject: MapService) { }
 
   updateAffichageImmatriculation(): void {
     if (this.rechercheVehicule.immatriculation != null && this.rechercheVehicule.immatriculation !== '') {
@@ -51,6 +52,7 @@ export class AdminVehiculesEntrepriseComponent implements OnInit {
   updateResultatsRecherche(): void {
     this.resultatsRecherche = this.replaceEmptyArray(this.resultatsFiltreParImmatriculation, this.rechercheVehicule.immatriculation)
       .filter(vehicule => this.replaceEmptyArray(this.resultatsFiltreParMarque, this.rechercheVehicule.marque).includes(vehicule));
+    this.mapSubject.transmettreVehicules(this.resultatsRecherche);
   }
 
   afficherModalCreation(modal) {
@@ -81,6 +83,7 @@ export class AdminVehiculesEntrepriseComponent implements OnInit {
       value => {
         this.vehiculesEntreprise = value;
         this.resultatsRecherche = this.vehiculesEntreprise;
+        this.mapSubject.transmettreVehicules(this.resultatsRecherche);
       },
       err => { },
       () => { }

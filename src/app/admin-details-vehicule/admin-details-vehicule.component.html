@@ -1,15 +1,39 @@
-<mat-grid-list cols="2" rowHeight="100px" gutterSize="10px">
-  <mat-grid-tile [colspan]="1" [rowspan]="3">
+<mat-grid-list cols="3" rowHeight="20px" gutterSize="10px">
+  <mat-grid-tile [colspan]="1" [rowspan]="12">
     <img class="car-image" [src]="vehicule.photoUrl">
   </mat-grid-tile>
-  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="1">
+  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="3">
     <div>Marque: {{vehicule.marque}}</div>
   </mat-grid-tile>
-  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="1">
+
+  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="4">
+    <button mat-raised-button color="primary" (click)='updateToReparation()'
+      [disabled]="vehicule.statutVehicule == 'EN SERVICE'  || vehicule.statutVehicule == 'HORS SERVICE' ">Mettre en
+      réparation</button>
+  </mat-grid-tile>
+
+  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="3">
     <div>Modèle: {{vehicule.modele}}</div>
   </mat-grid-tile>
-  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="1">
-    <div>égorie: {{vehicule.categorie}}</div>
+
+  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="4">
+    <button mat-raised-button color="accent" (click)='updateToInService()'
+      [disabled]="vehicule.statutVehicule == 'HORS SERVICE'  || vehicule.statutVehicule == 'EN REPARATION' ">Mettre en
+      service</button>
+  </mat-grid-tile>
+
+  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="3">
+    <div>Catégorie: {{vehicule.categorie}}</div>
+  </mat-grid-tile>
+
+  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="4">
+    <button mat-raised-button color="warn" (click)='updateToOutOfService()'
+      [disabled]="vehicule.statutVehicule == 'EN SERVICE'  || vehicule.statutVehicule == 'EN REPARATION' ">Hors
+      service</button>
+  </mat-grid-tile>
+
+  <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="3">
+    <div>Statut: {{vehicule.statutVehicule}}</div>
   </mat-grid-tile>
 </mat-grid-list>
 
@@ -24,8 +48,17 @@
   </ng-container>
 
   <ng-container matColumnDef="dateFin">
-    <th class="header-table" mat-header-cell *matHeaderCellDef> Date / Heure débu </th>
-    <td class="content-table" mat-cell *matCellDef="let element"> {{element.dateArrivee | date:'dd/MM/yyyy HH:mm'}} </td>
+
+    <th class="header-table" mat-header-cell *matHeaderCellDef> Date / Heure fin </th>
+    <td class="content-table" mat-cell *matCellDef="let element"> {{element.dateArrivee | date:'dd/MM/yyyy HH:mm'}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="responsable">
+    <th class="header-table" mat-header-cell *matHeaderCellDef> Responsable </th>
+    <td class="content-table" mat-cell *matCellDef="let element"> {{element.reservant}}
+    </td>
+
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
