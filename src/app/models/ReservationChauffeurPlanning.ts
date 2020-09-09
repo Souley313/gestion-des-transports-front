@@ -4,7 +4,7 @@ export class ReservationChauffeurPlanning {
     public dateFin?: Date,
     public infosPassager?: string,
     public telPassager?: string,
-    public imatriculation?: string,
+    public immatriculation?: string,
     public statut?: string,
     public reservationId?: number,
   ) {}

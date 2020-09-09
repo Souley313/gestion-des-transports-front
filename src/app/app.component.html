@@ -5,15 +5,5 @@
   </div>
 </ng-container>
 <main class="container mt-3">
-  <ng-container *ngIf="collegueConnecte | async as col">
-    <div class="lead" *ngIf="!col.estAnonyme()">
-      <p>Utilisateur connecté : {{col.email}}</p>
-      <p>Les rôles :</p>
-      <ul>
-        <li *ngFor="let r of col.roles">{{r}}</li>
-      </ul>
-      <p>Matricule : {{col.matricule}}</p>
-    </div>
-  </ng-container>
   <router-outlet></router-outlet>
 </main>

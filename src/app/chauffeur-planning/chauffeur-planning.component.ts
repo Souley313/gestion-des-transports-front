@@ -11,16 +11,15 @@ import { DataService } from '../services/data.service';
 })
 export class ChauffeurPlanningComponent implements OnInit {
 
-  acceptReservation: AcceptReservationChauffeur;
-  reservationsChauffeur: ReservationChauffeurPlanning[];
+  acceptReservation: AcceptReservationChauffeur = new AcceptReservationChauffeur();
+  reservationsChauffeur: ReservationChauffeurPlanning[] = [];
 
   constructor( private authSrv: AuthService, private dataSrv: DataService) { }
 
   accepterReservation( reservation: ReservationChauffeurPlanning) {
     this.acceptReservation.reservationId = reservation.reservationId;
-    this.dataSrv.accepterReservationChauffeur( this.acceptReservation).subscribe(
-      val => console.log( JSON.stringify( val))
-    );
+    this.dataSrv.accepterReservationChauffeur( this.acceptReservation);
+    this.reservationsChauffeur.filter( reserv => reserv === reservation)[0].statut = 'ACCEPTEE';
   }
 
   ngOnInit(): void {
@@ -30,7 +29,8 @@ export class ChauffeurPlanningComponent implements OnInit {
       () => { }
     );
     this.dataSrv.getReservationsByChauffeur( this.acceptReservation.chauffeurMatricule).subscribe(
-      reservations => this.reservationsChauffeur = reservations,
+      reservations => this.reservationsChauffeur = reservations.filter(
+        reserv => reserv.statut === 'ACCEPTE' || 'EN_ATTENTE'),
       err => { },
       () => { }
     );

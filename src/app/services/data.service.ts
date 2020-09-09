@@ -104,11 +104,11 @@ export class DataService {
 
   getReservationsByChauffeur( chauffeurMatricule: string): Observable<ReservationChauffeurPlanning[]> {
     return this.http.get<ReservationChauffeurPlanning[]>(
-      this.URL_BACKEND + 'reservation-entreprise/' + chauffeurMatricule);
+      this.URL_BACKEND + 'reservation-entreprise/chauffeur/' + chauffeurMatricule);
   }
 
   accepterReservationChauffeur( acceptation: AcceptReservationChauffeur): Observable<ReservationEntrepriseAffichage> {
-    return this.http.post<AcceptReservationChauffeur>( this.URL_BACKEND + 'reservation-entreprise', acceptation);
+    return this.http.post<AcceptReservationChauffeur>( this.URL_BACKEND + 'reservation-entreprise/chauffeur/', acceptation);
   }
 }
 
