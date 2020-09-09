@@ -25,6 +25,9 @@
       <li class="nav-item" *ngIf="utilisateur.roles.indexOf('ROLE_ADMINISTRATEUR') != -1">
         <a class="nav-link" routerLink="/administrateur/chauffeurs">Gérer les chauffeurs</a>
       </li>
+      <li class="nav-item" *ngIf="utilisateur.roles.indexOf('ROLE_CHAUFFEUR') != -1">
+        <a class="nav-link" routerLink="/chauffeur/planning">Planning</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" class="btn btn-outline-danger text-light" (click)="seDeconnecter()">Se déconnecter</a>
       </li>

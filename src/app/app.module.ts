@@ -34,6 +34,7 @@ import { MapComponent } from './map/map.component';
 import { AdminDetailsVehiculeComponent } from './admin-details-vehicule/admin-details-vehicule.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
+import { ChauffeurPlanningComponent } from './chauffeur-planning/chauffeur-planning.component';
 
 
 @NgModule({
@@ -54,8 +55,9 @@ import { MatTableModule } from '@angular/material/table';
     CollabReserverComponent,
     AdminVehiculesEntrepriseComponent,
     StatutAnnoncePipe,
-    MapComponent,
-    AdminDetailsVehiculeComponent
+    AdminDetailsVehiculeComponent,
+    ChauffeurPlanningComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

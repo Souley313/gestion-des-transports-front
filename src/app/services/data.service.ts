@@ -1,3 +1,4 @@
+import { AcceptReservationChauffeur } from './../models/AcceptReservationChauffeur';
 import { AnnonceCovoiturageUpdateStatutReservation } from './../models/AnnonceCovoiturageUpdateStatutReservation';
 import { ReservationEntrepriseAffichage } from './../models/ReservationEntrepriseAffichage';
 import { ReservationEntreprise } from '../models/ReservationEntreprise';
@@ -13,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 import { ChauffeurDto } from '../models/ChauffeurDto';
 import { AnnonceDto } from '../models/AnnonceDto';
 import { ReservationCovoiturageUpdateStatutReservation } from '../models/ReservationCovoiturageUpdateStatutReservation';
+import { ReservationChauffeurPlanning } from '../models/ReservationChauffeurPlanning';
 
 
 @Injectable({
@@ -83,7 +85,8 @@ export class DataService {
     return this.http.get<ReservationEntrepriseAffichage[]>(request);
   }
 
-  annulerReservation(updateStatut: ReservationCovoiturageUpdateStatutReservation): Observable<ReservationCovoiturageUpdateStatutReservation> {
+  annulerReservation(updateStatut: ReservationCovoiturageUpdateStatutReservation):
+  Observable<ReservationCovoiturageUpdateStatutReservation> {
     return this.http.patch<ReservationCovoiturageUpdateStatutReservation>(
       this.URL_BACKEND + 'reservations-covoiturage',
       updateStatut
@@ -101,6 +104,15 @@ export class DataService {
     return this.http.get<VehiculeEntrepriseInfosGenerales>(
       this.URL_BACKEND + 'vehicules-entreprise/' + vehiculeEntrepriseId,
     );
+  }
+
+  getReservationsByChauffeur( chauffeurMatricule: string): Observable<ReservationChauffeurPlanning[]> {
+    return this.http.get<ReservationChauffeurPlanning[]>(
+      this.URL_BACKEND + 'reservation-entreprise/chauffeur/' + chauffeurMatricule);
+  }
+
+  accepterReservationChauffeur( acceptation: AcceptReservationChauffeur): Observable<ReservationEntrepriseAffichage> {
+    return this.http.post<AcceptReservationChauffeur>( this.URL_BACKEND + 'reservation-entreprise/chauffeur/', acceptation);
   }
 }
 

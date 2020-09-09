@@ -1,0 +1,32 @@
+<div class="card mb-3 w-100">
+  <div class="card-body">
+    <h1 class="card-title">Planning</h1>
+    <table class="table table-striped w-max" *ngIf="reservationsChauffeur.length != 0">
+      <thead>
+        <tr>
+          <th>Date / Heure début</th>
+          <th>Date / Heure fin</th>
+          <th>Responsable</th>
+          <th>Téléphone</th>
+          <th>Véhicule</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reservation of reservationsChauffeur">
+          <td>{{reservation.dateDebut | date:'dd/MM/yyyy hh:mm'}}</td>
+          <td>{{reservation.dateFin | date:'dd/MM/yyyy hh:mm'}}</td>
+          <td>{{reservation.infosPassager}}</td>
+          <td>{{reservation.telPassager}}</td>
+          <td>{{reservation.immatriculation}}</td>
+          <ng-container *ngIf="reservation.statut == 'EN_ATTENTE'; else elseTemplate">
+            <td> <button type="button" class="btn btn-primary btn-sm"
+                (click)="accepterReservation( reservation)">Accepter</button> </td>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <td><button type="button" class="btn btn-success btn-sm">Accepté</button></td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
