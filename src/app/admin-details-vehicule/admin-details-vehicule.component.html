@@ -7,7 +7,7 @@
   </mat-grid-tile>
 
   <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="4">
-    <button mat-raised-button color="primary" (click)='updateToReparation()'
+    <button class="btn btn-primary" (click)='updateToReparation()'
       [disabled]="vehicule.statutVehicule == 'EN SERVICE'  || vehicule.statutVehicule == 'HORS SERVICE' ">Mettre en
       réparation</button>
   </mat-grid-tile>
@@ -17,7 +17,7 @@
   </mat-grid-tile>
 
   <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="4">
-    <button mat-raised-button color="accent" (click)='updateToInService()'
+    <button class="btn btn-primary" (click)='updateToInService()'
       [disabled]="vehicule.statutVehicule == 'HORS SERVICE'  || vehicule.statutVehicule == 'EN REPARATION' ">Mettre en
       service</button>
   </mat-grid-tile>
@@ -27,7 +27,7 @@
   </mat-grid-tile>
 
   <mat-grid-tile class="text-alignement" [colspan]="1" [rowspan]="4">
-    <button mat-raised-button color="warn" (click)='updateToOutOfService()'
+    <button class="btn btn-danger" (click)='updateToOutOfService()'
       [disabled]="vehicule.statutVehicule == 'EN SERVICE'  || vehicule.statutVehicule == 'EN REPARATION' ">Hors
       service</button>
   </mat-grid-tile>

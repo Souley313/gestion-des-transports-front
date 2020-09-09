@@ -3,7 +3,6 @@ import { AdminDetailsVehiculeComponent } from './admin-details-vehicule/admin-de
 import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-publier-annonce.component';
 import { AdminVehiculesEntrepriseComponent } from './admin-vehicules-entreprise/admin-vehicules-entreprise.component';
 import { CollabReserverComponent } from './collab-reserver/collab-reserver.component';
-import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
 import { CollabAnnoncesComponent } from './collab-annonces/collab-annonces.component';
 import { CollabReservationsComponent } from './collab-reservations/collab-reservations.component';
 import { NgModule } from '@angular/core';
@@ -21,7 +20,6 @@ const routes: Routes = [
   { path: 'collaborateur/reservations', component: CollabReservationsComponent, canActivate: [StatutConnecteService] },
   { path: 'collaborateur/annonces', component: CollabAnnoncesComponent, canActivate: [StatutConnecteService] },
   { path: 'collaborateur/annonces/creer', component: CollabPublierAnnonceComponent, canActivate: [StatutConnecteService] },
-  { path: 'collaborateur/statistiques', component: CollabStatistiquesComponent, canActivate: [StatutConnecteService] },
   { path: 'collaborateur/reserver', component: CollabReserverComponent, canActivate: [StatutConnecteService] },
   { path: 'administrateur/vehicules', component: AdminVehiculesEntrepriseComponent, canActivate: [StatutConnecteService] },
   { path: 'administrateur/vehicules/:vehicleEntrepriseId', component: AdminDetailsVehiculeComponent, canActivate: [StatutConnecteService] },

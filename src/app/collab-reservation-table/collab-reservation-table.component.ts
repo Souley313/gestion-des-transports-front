@@ -14,21 +14,24 @@ export class CollabReservationTableComponent implements OnInit {
   @Input()
   displayStatut: boolean;
   @Input()
-  reservationsCovoiturageAffichage: ReservationCovoiturageAffichage[];
+  reservationsCovoiturageAffichage: ReservationCovoiturageAffichage[] = [];
   reservationModal = new ReservationCovoiturageAffichage();
   reservationCovoiturageUpdateStatutReservation = new ReservationCovoiturageUpdateStatutReservation();
   isClosed = true;
   errorAnnulation: any;
   hasError = false;
   isSubmitted = false;
+
   constructor(private modalService: NgbModal, protected dataService: DataService) { }
+
   afficherDetails(reservation: ReservationCovoiturageAffichage, content) {
     this.reservationModal = reservation;
     this.modalService.open(content);
   }
 
   confirmerAnnulation(reservation: ReservationCovoiturageAffichage, content) {
-    this.reservationCovoiturageUpdateStatutReservation = ReservationCovoiturageAffichageMapper.ReservationCovoiturageAffichageToReservationUpdate(reservation);
+    this.reservationCovoiturageUpdateStatutReservation =
+      ReservationCovoiturageAffichageMapper.ReservationCovoiturageAffichageToReservationUpdate(reservation);
     this.modalService.open(content);
   }
 

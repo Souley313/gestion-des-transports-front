@@ -18,7 +18,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CollabMenuComponent } from './collab-menu/collab-menu.component';
 import { CollabAnnoncesComponent } from './collab-annonces/collab-annonces.component';
 import { CollabReservationsComponent } from './collab-reservations/collab-reservations.component';
-import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
 import { CollabReserverVehiculeEntrepriseComponent } from './collab-reserver-vehicule-entreprise/collab-reserver-vehicule-entreprise.component';
 import { CollabPublierAnnonceComponent } from './collab-publier-annonce/collab-publier-annonce.component';
 import { CollabReservationTableComponent } from './collab-reservation-table/collab-reservation-table.component';
@@ -45,7 +44,6 @@ import { ChauffeurPlanningComponent } from './chauffeur-planning/chauffeur-plann
     CollabMenuComponent,
     CollabAnnoncesComponent,
     CollabReservationsComponent,
-    CollabStatistiquesComponent,
     CollabReserverVehiculeEntrepriseComponent,
     CollabPublierAnnonceComponent,
     CollabReservationTableComponent,

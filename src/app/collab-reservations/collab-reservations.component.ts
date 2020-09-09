@@ -13,10 +13,10 @@ export class CollabReservationsComponent implements OnInit, OnDestroy {
   showVehicules = false;
   showCovoiturages = true;
   showCourses = false;
-  reservationsCovoiturageHistoriqueAffichage: ReservationCovoiturageAffichage[];
-  reservationsCovoiturageEnCoursAffichage: ReservationCovoiturageAffichage[];
-  reservationsEntrepriseHistoriqueAffichage: ReservationEntrepriseAffichage[];
-  reservationsEntrepriseEnCoursAffichage: ReservationEntrepriseAffichage[];
+  reservationsCovoiturageHistoriqueAffichage: ReservationCovoiturageAffichage[] = [];
+  reservationsCovoiturageEnCoursAffichage: ReservationCovoiturageAffichage[] = [];
+  reservationsEntrepriseHistoriqueAffichage: ReservationEntrepriseAffichage[] = [];
+  reservationsEntrepriseEnCoursAffichage: ReservationEntrepriseAffichage[] = [];
   matricule: string;
   constructor(protected dataService: DataService, protected authService: AuthService) { }
 

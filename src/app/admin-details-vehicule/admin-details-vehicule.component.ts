@@ -12,7 +12,7 @@ export class AdminDetailsVehiculeComponent implements OnInit {
 
   constructor(protected dataService: DataService, private route: ActivatedRoute) { }
   vehuculeId: string;
-  vehicule: VehiculeEntrepriseInfosGenerales;
+  vehicule: VehiculeEntrepriseInfosGenerales = new VehiculeEntrepriseInfosGenerales();
 
 
   displayedColumns: string[] = ['dateDebut', 'dateFin', 'responsable'];
