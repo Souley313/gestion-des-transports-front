@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+
+  transports-db:
+    build: ../transports-db
+    image:  transports-db
+    container_name: transports-db
+    volumes:
+      - transports-data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=transports_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/tmp
+    networks:
+      - transports-network 
+    
+  transports-back:
+    image: transports-back
+    build: ../gestion-des-transports-back/.
+    container_name: transports-back
+    depends_on:
+      - transports-db
+    ports:
+      - "8080:8080"
+    networks:
+      - transports-network
+
+  transpots-front:
+    image: transports-front
+    build: .
+    container_name: transports-front
+    depends_on:
+      - transports-back
+    ports:
+      - "9000:80"
+      - "443:443"
+    networks:
+      - transports-network
+
+networks:
+  transports-network:
+
+volumes:
+  transports-data:

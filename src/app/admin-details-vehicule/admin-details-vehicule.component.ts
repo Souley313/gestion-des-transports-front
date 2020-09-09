@@ -14,13 +14,15 @@ export class AdminDetailsVehiculeComponent implements OnInit {
   vehuculeId: string;
   vehicule: VehiculeEntrepriseInfosGenerales;
 
-  displayedColumns: string[] = ['dateDebut', 'dateFin'];
+
+  displayedColumns: string[] = ['dateDebut', 'dateFin', 'responsable'];
+
 
   ngOnInit(): void {
-    this.getVehuculeDetail();
+    this.getVehiculeDetail();
   }
 
-  getVehuculeDetail() {
+  getVehiculeDetail() {
     this.route.paramMap.subscribe(params => {
       this.vehuculeId = params.get('vehicleEntrepriseId');
 
@@ -28,6 +30,27 @@ export class AdminDetailsVehiculeComponent implements OnInit {
         console.log(response);
         this.vehicule = response;
       });
+    });
+  }
+
+  updateToInService() {
+    this.vehicule.statutVehicule = 'EN_SERVICE';
+    this.dataService.updateVehiculeEntreprise(this.vehicule).subscribe(response => {
+      this.vehicule = response;
+    });
+  }
+
+  updateToOutOfService() {
+    this.vehicule.statutVehicule = 'HORS_SERVICE';
+    this.dataService.updateVehiculeEntreprise(this.vehicule).subscribe(response => {
+      this.vehicule = response;
+    });
+  }
+
+  updateToReparation() {
+    this.vehicule.statutVehicule = 'EN_REPARATION';
+    this.dataService.updateVehiculeEntreprise(this.vehicule).subscribe(response => {
+      this.vehicule = response;
     });
   }
 
